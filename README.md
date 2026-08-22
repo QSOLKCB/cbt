@@ -92,13 +92,24 @@ tests/
 
 `ai/bootstrap.json` is the entry point for AI systems.
 
-## Validation
+## Build and validation
+
+The site data is generated from canonical JSON and is intentionally not committed as medical evidence.
 
 ```bash
 python3 tools/validate_context.py
+python3 tools/build_site_data.py
 python3 tools/build_site_data.py --check
 python3 -m unittest discover -s tests -v
 ```
+
+For a local preview after building:
+
+```bash
+python3 -m http.server 8000 -d site
+```
+
+GitHub Pages performs the same build from canonical records when `main` is deployed.
 
 ## Scope
 
