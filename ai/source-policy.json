@@ -1,0 +1,36 @@
+{
+  "type": "cbt-source-policy",
+  "schema_version": "1.0.0",
+  "visibility": "public",
+  "allowed_source_classes": [
+    "australian_regulator",
+    "australian_safety_quality_body",
+    "nhs_public_guidance",
+    "uk_government_health_constitution",
+    "nice_guideline",
+    "peer_reviewed_pubmed",
+    "public_user_supplied_source_after_verification"
+  ],
+  "preferred_order": [
+    "current_applicable_guideline_or_standard",
+    "current_public_health_service_guidance",
+    "peer_reviewed_primary_or_review_evidence",
+    "secondary_public_source"
+  ],
+  "rules": [
+    "every substantive canonical medical claim must resolve to a public source id",
+    "source authenticity does not prove every claim contained in the source",
+    "preserve jurisdiction and review dates",
+    "preserve disagreement instead of silently choosing one source",
+    "do not copy restricted copyrighted clinical manuals into the repository",
+    "prefer summaries metadata and links to primary guidance",
+    "site projections cannot become claim evidence"
+  ],
+  "fail_closed_on": [
+    "fabricated_citation",
+    "unknown_source_class",
+    "unverifiable_attribution",
+    "claim_stronger_than_source",
+    "missing_jurisdiction_for_jurisdiction_sensitive_claim"
+  ]
+}

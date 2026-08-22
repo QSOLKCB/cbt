@@ -1,0 +1,178 @@
+{
+  "type": "cbt-public-source-registry",
+  "schema_version": "1.0.0",
+  "snapshot_date": "2026-08-22",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "au.medicalboard.good-medical-practice",
+      "class": "australian_regulator",
+      "jurisdiction": "Australia",
+      "title": "Good medical practice: a code of conduct for doctors in Australia",
+      "url": "https://www.medicalboard.gov.au/Codes%20Guidelines-Policies/Code-of-conduct.aspx",
+      "supports": [
+        "professional_ethics",
+        "patient_centred_care",
+        "limits_of_competence",
+        "informed_decision_making"
+      ]
+    },
+    {
+      "id": "au.acsqhc.charter",
+      "class": "australian_safety_quality_body",
+      "jurisdiction": "Australia",
+      "title": "Australian Charter of Healthcare Rights (second edition)",
+      "url": "https://www.safetyandquality.gov.au/our-work/partnering-consumers/australian-charter-healthcare-rights",
+      "supports": [
+        "access",
+        "safety",
+        "respect",
+        "partnership",
+        "information",
+        "privacy",
+        "feedback"
+      ]
+    },
+    {
+      "id": "au.acsqhc.informed-consent",
+      "class": "australian_safety_quality_body",
+      "jurisdiction": "Australia",
+      "title": "Informed consent",
+      "url": "https://www.safetyandquality.gov.au/clinical-topics/informed-consent",
+      "supports": [
+        "informed_consent",
+        "benefits_harms_alternatives",
+        "shared_decision_making"
+      ]
+    },
+    {
+      "id": "au.acsqhc.digital-mental-health",
+      "class": "australian_safety_quality_body",
+      "jurisdiction": "Australia",
+      "title": "National Safety and Quality Digital Mental Health Standards",
+      "url": "https://www.safetyandquality.gov.au/national-standards/digital-mental-health-standards",
+      "supports": [
+        "digital_mental_health_safety",
+        "consumer_partnership",
+        "governance",
+        "harm_prevention"
+      ]
+    },
+    {
+      "id": "uk.nhs.constitution",
+      "class": "uk_government_health_constitution",
+      "jurisdiction": "England",
+      "title": "The NHS Constitution for England",
+      "url": "https://www.gov.uk/government/publications/the-nhs-constitution-for-england/the-nhs-constitution-for-england",
+      "supports": [
+        "respect",
+        "dignity",
+        "consent",
+        "informed_choice",
+        "patient_involvement",
+        "appropriate_care"
+      ]
+    },
+    {
+      "id": "uk.nhs.cbt",
+      "class": "nhs_public_guidance",
+      "jurisdiction": "England",
+      "title": "Cognitive behavioural therapy (CBT)",
+      "url": "https://www.nhs.uk/tests-and-treatments/cognitive-behavioural-therapy-cbt/",
+      "supports": [
+        "cbt_definition",
+        "treatment_scope",
+        "assessment",
+        "session_structure",
+        "between_session_practice",
+        "nonresponse_followup"
+      ]
+    },
+    {
+      "id": "uk.nhs.every-mind-matters-cbt",
+      "class": "nhs_public_guidance",
+      "jurisdiction": "England",
+      "title": "Self-help CBT techniques",
+      "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/",
+      "supports": [
+        "self_help_scope",
+        "thought_behaviour_cycles",
+        "reframing",
+        "problem_solving"
+      ]
+    },
+    {
+      "id": "uk.nhs.thought-record",
+      "class": "nhs_public_guidance",
+      "jurisdiction": "England",
+      "title": "Thought record CBT exercise",
+      "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/thought-record/",
+      "supports": [
+        "thought_record",
+        "seven_prompt_structure",
+        "evidence_for_against",
+        "balanced_thought"
+      ]
+    },
+    {
+      "id": "uk.nice.depression.ng222",
+      "class": "nice_guideline",
+      "jurisdiction": "England",
+      "title": "Depression in adults: treatment and management (NG222)",
+      "url": "https://www.nice.org.uk/guidance/ng222",
+      "review_context": "last reviewed 2026-01-30",
+      "supports": [
+        "cbt_as_treatment",
+        "shared_treatment_choice",
+        "relapse_prevention",
+        "trained_practitioner_context"
+      ]
+    },
+    {
+      "id": "uk.nice.gad.cg113",
+      "class": "nice_guideline",
+      "jurisdiction": "England",
+      "title": "Generalised anxiety disorder and panic disorder in adults: management (CG113)",
+      "url": "https://www.nice.org.uk/guidance/cg113",
+      "supports": [
+        "stepped_care",
+        "cbt_based_self_help",
+        "high_intensity_cbt",
+        "trained_practitioner_context",
+        "patient_preference"
+      ]
+    },
+    {
+      "id": "pubmed.lieberman.2007.affect-labeling",
+      "class": "peer_reviewed_pubmed",
+      "jurisdiction": "research_evidence",
+      "title": "Putting feelings into words: affect labeling disrupts amygdala activity in response to affective stimuli",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17576282/",
+      "doi": "10.1111/j.1467-9280.2007.01916.x",
+      "population": "30 participants, 18 women and 12 men, aged 18–36, in a UCLA laboratory study",
+      "design": "functional MRI experiment comparing affect labelling with other encoding/matching conditions while participants viewed emotional facial stimuli",
+      "scope_limitations": "Laboratory affect-labelling responses to emotional stimuli; not a study of CBT treatment outcomes, clinical populations, coding, academic performance, or real-world work productivity.",
+      "supports": [
+        "affect_labeling_mechanism",
+        "rvlpfc_activity",
+        "amygdala_response"
+      ]
+    },
+    {
+      "id": "pubmed.buhle.2014.reappraisal-meta",
+      "class": "peer_reviewed_pubmed",
+      "jurisdiction": "research_evidence",
+      "title": "Cognitive reappraisal of emotion: a meta-analysis of human neuroimaging studies",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23765157/",
+      "doi": "10.1093/cercor/bht154",
+      "population": "Participants pooled across 48 human neuroimaging studies; the registry does not treat these heterogeneous samples as representative of every clinical or real-world population.",
+      "design": "meta-analysis of 48 human neuroimaging studies of cognitive reappraisal, mostly involving downregulation of negative affect",
+      "scope_limitations": "Mechanistic neuroimaging synthesis; not a direct test of this repository's workflow, individual clinical benefit, coding, academic performance, or productivity outcomes.",
+      "supports": [
+        "reappraisal_mechanism",
+        "frontal_parietal_control",
+        "amygdala_modulation"
+      ]
+    }
+  ]
+}

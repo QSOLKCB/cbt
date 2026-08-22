@@ -1,0 +1,34 @@
+{
+  "type": "cbt-epistemic-contract",
+  "schema_version": "1.0.0",
+  "states": {
+    "authoritative_guidance": "supported by an identified authoritative public guideline or standards source within its stated scope",
+    "evidence_supported": "supported by identified clinical or peer-reviewed evidence but not necessarily a guideline recommendation",
+    "educational_summary": "a faithful plain-language summary of identified source material",
+    "inferred": "reasoned from evidence but not explicitly established by it",
+    "user_reported": "reported by the user and not independently verified",
+    "unknown": "not established by available evidence",
+    "conflict": "credible relevant sources materially disagree or apply differently and the conflict is unresolved",
+    "out_of_scope": "requires clinical authority, assessment, data, or jurisdiction-specific knowledge the substrate does not possess"
+  },
+  "rules": [
+    "confidence_is_not_evidence",
+    "user_report_is_not_diagnosis",
+    "guideline_recommendation_is_not_individual_medical_advice",
+    "population_level_evidence_does_not_guarantee_individual_outcome",
+    "symptom_improvement_is_not_cure",
+    "absence_of_improvement_does_not_prove_personal_failure",
+    "never_hide_material_conflict",
+    "never_upgrade_inference_to_guidance_without_source_support",
+    "preserve_source_jurisdiction_population_and_review_date",
+    "generated_projection_is_not_canonical_evidence"
+  ],
+  "guards": [
+    "CONFIDENCE != EVIDENCE",
+    "USER_REPORT != DIAGNOSIS",
+    "GUIDELINE_RECOMMENDATION != INDIVIDUAL_MEDICAL_ADVICE",
+    "SYMPTOM_IMPROVEMENT != CURE",
+    "PROJECTION != CANONICAL_SOURCE"
+  ],
+  "fallback_state": "unknown"
+}
