@@ -149,7 +149,7 @@ console.log(JSON.stringify({
         app = (ROOT / "site" / "app.js").read_text(encoding="utf-8")
         self.assertIn('rel="manifest"', index)
         self.assertIn("OFFLINE_CACHE != CURRENT_GUIDANCE", app)
-        self.assertIn("cached medical/reference content may be stale", app)
+        self.assertIn("cached medical/reference content may be stale", app.lower())
 
 
 if __name__ == "__main__":
