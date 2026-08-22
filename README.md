@@ -2,7 +2,7 @@
 
 > **Use CBT 95:** https://qsolkcb.github.io/cbt/
 >
-> **On-board an AI:** start with [`README4AI.md`](README4AI.md), then load [`ai/bootstrap.json`](ai/bootstrap.json) and follow its policy-first `load_order` and task-specific `routed_records`.
+> **On-board an AI:** load [`ai/bootstrap.json`](ai/bootstrap.json) first, obey its policy-first `load_order` and task-specific `routed_records`, then use [`README4AI.md`](README4AI.md) as supplemental operator guidance.
 
 **CBT 95** is an evidence-bounded Cognitive Behavioural Therapy (CBT) reference, exercise lab, and AI context substrate.
 
@@ -33,9 +33,9 @@ Give the AI this repository:
 
 Then instruct it to:
 
-1. read `README4AI.md`;
-2. load `ai/bootstrap.json` as the machine entry point;
-3. obey the bootstrap `load_order` **before** loading task-specific CBT material;
+1. load `ai/bootstrap.json` first as the canonical machine entry point;
+2. obey the bootstrap `load_order` **before** loading task-specific CBT material;
+3. use `README4AI.md` as supplemental operator guidance, never as a replacement for the bootstrap contract;
 4. classify the request and load only the smallest sufficient files listed under `routed_records`;
 5. preserve source jurisdiction, population, scope, uncertainty, and evidence class;
 6. keep self-help education separate from clinician-delivered CBT;
@@ -86,7 +86,7 @@ Urgent safety
 ```text
 Use https://github.com/QSOLKCB/cbt as the CBT context substrate for this conversation.
 
-Read README4AI.md first, then load ai/bootstrap.json. Obey its load_order before answering any CBT-related request. Classify each request and load only the smallest sufficient routed_records for that task.
+Load ai/bootstrap.json first as the canonical machine entry point. Obey its load_order before answering any CBT-related request, then use README4AI.md as supplemental operator guidance. Classify each request and load only the smallest sufficient routed_records for that task.
 
 Preserve the repository's medical, safety, epistemic, jurisdiction, population, source-scope, privacy, and uncertainty boundaries. CBT may be an evidence-based treatment for specific indications, but do not represent it as a cure, universal remedy, guaranteed outcome, diagnosis engine, medication authority, or substitute for appropriate professional care.
 
@@ -95,17 +95,19 @@ Separate educational self-help from clinician-delivered CBT. Urgent safety or me
 
 ### AI without GitHub access
 
-Provide the AI with the files directly. At minimum, give it:
+Provide the AI with the canonical machine entry point first, followed by the policy files it names and any task-specific routed records. At minimum, give it:
 
 ```text
-README4AI.md
 ai/bootstrap.json
 ai/source-policy.json
 ai/epistemic-contract.json
 ai/medical-claim-boundary.json
 ai/safety-escalation-policy.json
 profiles/cbt-context.json
+README4AI.md
 ```
+
+`README4AI.md` is supplemental guidance; it does not replace or precede the bootstrap contract.
 
 Then add the task-specific files named in `routed_records`. For example, an exercise-capable assistant also needs `exercises/index.json`, `profiles/learning-accessibility.json`, `examples/index.json`, and `sources/public-sources.json`.
 
