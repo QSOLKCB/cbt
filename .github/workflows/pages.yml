@@ -18,8 +18,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - run: python3 tools/validate_context.py
       - run: python3 tools/build_site_data.py
+      - run: python3 tools/build_site_data.py --check
+      - run: node --check site/search.js
+      - run: node --check site/data-model.js
+      - run: node --check site/app.js
+      - run: node --check site/service-worker.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
