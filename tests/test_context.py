@@ -1,14 +1,34 @@
 import json
+import shutil
 import subprocess
 import sys
+import tempfile
 import unittest
+from datetime import date
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/"tools"))
+import claim_ledger  # noqa: E402
+
 
 def load(path): return json.loads((ROOT/path).read_text(encoding="utf-8"))
 
+
+def write_json(path, value):
+    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
 class ContextTests(unittest.TestCase):
+    def make_claim_root(self):
+        tmp=tempfile.TemporaryDirectory()
+        root=Path(tmp.name)
+        shutil.copytree(ROOT/"claims",root/"claims")
+        shutil.copytree(ROOT/"sources",root/"sources")
+        (root/"ai").mkdir()
+        shutil.copy2(ROOT/"ai"/"source-policy.json",root/"ai"/"source-policy.json")
+        return tmp,root
+
     def test_validator(self):
         subprocess.run([sys.executable,str(ROOT/"tools"/"validate_context.py")],check=True)
 
@@ -22,6 +42,27 @@ class ContextTests(unittest.TestCase):
         proc=subprocess.run([sys.executable,str(ROOT/"tools"/"claim_ledger.py"),"freshness","--as-of","2028-12-31","--fail-on-stale"],capture_output=True,text=True)
         self.assertNotEqual(proc.returncode,0)
         self.assertIn("review_due",proc.stdout)
+
+    def test_historical_audit_rejects_future_verification(self):
+        proc=subprocess.run([sys.executable,str(ROOT/"tools"/"claim_ledger.py"),"freshness","--as-of","2020-01-01","--fail-on-stale"],capture_output=True,text=True)
+        self.assertNotEqual(proc.returncode,0)
+        self.assertIn("not_yet_verified",proc.stdout)
+        self.assertIn("not_yet_reviewed",proc.stdout)
+
+    def test_claim_review_due_is_independent_of_snapshot_freshness(self):
+        tmp,root=self.make_claim_root()
+        try:
+            ledger=json.loads((root/"claims/index.json").read_text())
+            ledger["claims"][0]["review_due"]="2026-08-23"
+            write_json(root/"claims/index.json",ledger)
+            rows=claim_ledger.freshness_report(root,date(2026,8,24))
+            claim_rows=[r for r in rows if r["record_type"]=="claim" and r["claim_id"]==ledger["claims"][0]["id"]]
+            self.assertEqual(claim_rows[0]["freshness_status"],"claim_review_due")
+            source_rows=[r for r in rows if r["record_type"]=="source_snapshot" and r["source_id"]=="uk.nice.depression.ng222"]
+            self.assertEqual(source_rows[0]["freshness_status"],"current_verification")
+            self.assertTrue(claim_ledger._freshness_blocks(claim_rows[0]))
+        finally:
+            tmp.cleanup()
 
     def test_projection_is_deterministic_and_named(self):
         subprocess.run([sys.executable,str(ROOT/"tools"/"build_site_data.py")],check=True)
@@ -97,6 +138,47 @@ class ContextTests(unittest.TestCase):
         for claim in ledger["claims"]:
             for field in ("population","intervention","comparator","outcome","evidence_class","jurisdiction","source_ids","snapshot_ids","not_established"):
                 self.assertTrue(claim[field])
+
+    def test_source_policy_registers_every_routed_source_class(self):
+        allowed=set(load("ai/source-policy.json")["allowed_source_classes"])
+        records=load("sources/public-sources.json")["sources"]+load("sources/evidence-sources.json")["sources"]
+        self.assertTrue({s["class"] for s in records}.issubset(allowed))
+
+    def test_unregistered_source_class_fails_closed(self):
+        tmp,root=self.make_claim_root()
+        try:
+            sources=json.loads((root/"sources/evidence-sources.json").read_text())
+            sources["sources"][0]["class"]="invented_evidence_class"
+            write_json(root/"sources/evidence-sources.json",sources)
+            errors=claim_ledger.validate_repository(root)
+            self.assertTrue(any("unregistered source class" in e for e in errors))
+        finally:
+            tmp.cleanup()
+
+    def test_every_claim_source_requires_a_matching_snapshot(self):
+        tmp,root=self.make_claim_root()
+        try:
+            ledger=json.loads((root/"claims/index.json").read_text())
+            ledger["claims"][0]["source_ids"].append("uk.nice.gad.cg113")
+            write_json(root/"claims/index.json",ledger)
+            errors=claim_ledger.validate_repository(root)
+            self.assertTrue(any("missing snapshots for claim sources" in e and "uk.nice.gad.cg113" in e for e in errors))
+        finally:
+            tmp.cleanup()
+
+    def test_archive_status_is_derived_from_source_authority(self):
+        tmp,root=self.make_claim_root()
+        try:
+            ledger=json.loads((root/"claims/index.json").read_text())
+            archived=next(c for c in ledger["claims"] if c["id"]=="claim.depression.ranzcp2020.historical-cbt-priority")
+            archived["evidence_class"]="guideline_recommendation"
+            archived["status"]="current_guidance"
+            write_json(root/"claims/index.json",ledger)
+            errors=claim_ledger.validate_repository(root)
+            self.assertTrue(any("uses reference_only evidence and must remain historical_reference_only" in e for e in errors))
+            self.assertTrue(any("uses reference_only guidance and must use archived_guideline" in e for e in errors))
+        finally:
+            tmp.cleanup()
 
     def test_evidence_classes_are_not_a_fake_global_rank(self):
         data=load("claims/evidence-classes.json")
