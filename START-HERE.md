@@ -2,7 +2,14 @@
 
 ## Humans
 
-Open the Encarta-style site in `site/` and choose **Learn**, **Exercises**, or **CBT for Work**.
+Build the generated site projection, then open the Encarta-style desk:
+
+```bash
+python3 tools/build_site_data.py
+python3 -m http.server 8000 -d site
+```
+
+Then choose **Learn**, **Exercises**, or **CBT for Work**.
 
 The exercise cards are designed to show *how* CBT works, not merely tell you what CBT is.
 
