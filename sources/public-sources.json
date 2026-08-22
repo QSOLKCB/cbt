@@ -149,6 +149,9 @@
       "title": "Putting feelings into words: affect labeling disrupts amygdala activity in response to affective stimuli",
       "url": "https://pubmed.ncbi.nlm.nih.gov/17576282/",
       "doi": "10.1111/j.1467-9280.2007.01916.x",
+      "population": "30 participants, 18 women and 12 men, aged 18–36, in a UCLA laboratory study",
+      "design": "functional MRI experiment comparing affect labelling with other encoding/matching conditions while participants viewed emotional facial stimuli",
+      "scope_limitations": "Laboratory affect-labelling responses to emotional stimuli; not a study of CBT treatment outcomes, clinical populations, coding, academic performance, or real-world work productivity.",
       "supports": [
         "affect_labeling_mechanism",
         "rvlpfc_activity",
@@ -161,6 +164,10 @@
       "jurisdiction": "research_evidence",
       "title": "Cognitive reappraisal of emotion: a meta-analysis of human neuroimaging studies",
       "url": "https://pubmed.ncbi.nlm.nih.gov/23765157/",
+      "doi": "10.1093/cercor/bht154",
+      "population": "Participants pooled across 48 human neuroimaging studies; the registry does not treat these heterogeneous samples as representative of every clinical or real-world population.",
+      "design": "meta-analysis of 48 human neuroimaging studies of cognitive reappraisal, mostly involving downregulation of negative affect",
+      "scope_limitations": "Mechanistic neuroimaging synthesis; not a direct test of this repository's workflow, individual clinical benefit, coding, academic performance, or productivity outcomes.",
       "supports": [
         "reappraisal_mechanism",
         "frontal_parietal_control",
