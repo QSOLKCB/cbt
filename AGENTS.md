@@ -14,12 +14,49 @@ Maintain a public, evidence-bounded CBT teaching resource and AI substrate.
 - `GUIDELINE_RECOMMENDATION != INDIVIDUAL_MEDICAL_ADVICE`
 - `CONFIDENCE != EVIDENCE`
 - `PROJECTION != CANONICAL_SOURCE`
+- `ADJACENT_CLAIM != CLAIM_LOCAL_EVIDENCE`
+- `STALE_VERIFICATION != FALSE_CLAIM`
+- `ARCHIVED_GUIDANCE != CURRENT_GUIDANCE`
+- `CONFLICT_BUNDLE != AVERAGED_CONSENSUS`
 
 Do not weaken these to make an answer smoother.
 
 ## Clinical language rule
 
 Do not “correct” the project into saying CBT is never a treatment. NHS/NICE guidance does recommend CBT as a treatment for multiple indications. The boundary is that **treatment does not mean cure**, and a population-level recommendation does not become individualized medical advice.
+
+## Claim ledger
+
+Substantive medical claims belong in `claims/index.json`.
+
+Each claim must preserve:
+
+- population
+- intervention
+- comparator
+- outcome
+- evidence class
+- jurisdiction
+- source IDs
+- source-snapshot IDs
+- review dates
+- material limitations / what is not established
+
+Do not inherit a positive result from one condition, population, protocol, comparator, outcome, or delivery format into another.
+
+Evidence classes are not a single ranking ladder. Guidelines, trials, systematic reviews, public education, mechanistic evidence, professional training material, and archived guidance answer different questions.
+
+`claims/conflicts.json` preserves material differences. Do not average incompatible findings into a synthetic “consensus”. Resolve apparent conflicts only by explicit scope, jurisdiction, intervention, comparator, outcome, authority, or currency rules.
+
+A stale source snapshot means repository verification is due. It does **not** mean the underlying claim is automatically false.
+
+Archived guidance remains available for provenance but must never be presented as current guidance.
+
+## Source snapshots
+
+`sources/snapshots/manifest.json` stores identifiers, bibliographic/status metadata, repository-authored summaries, dates, and metadata fingerprints only.
+
+Do not copy restricted full text into source snapshots. A metadata fingerprint is not a hash of the remote article or guideline body.
 
 ## Exercise design
 
@@ -59,4 +96,7 @@ Every new substantive medical or neuroscience claim must:
 2. preserve population, jurisdiction, and scope;
 3. avoid stronger wording than the source;
 4. expose material uncertainty;
-5. pass validation and tests.
+5. use the correct evidence class;
+6. bind to a versioned source snapshot;
+7. preserve conflicts instead of smoothing them away;
+8. pass validation and tests.
