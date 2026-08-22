@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: python3 tools/claim_ledger.py validate
+      - run: python3 tools/claim_ledger.py freshness --fail-on-stale
       - run: python3 tools/validate_context.py
       - run: python3 tools/build_site_data.py
       - run: python3 tools/build_site_data.py --check

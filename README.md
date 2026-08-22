@@ -37,7 +37,7 @@ Then instruct it to:
 2. obey the bootstrap `load_order` **before** loading task-specific CBT material;
 3. use `README4AI.md` as supplemental operator guidance, never as a replacement for the bootstrap contract;
 4. classify the request and load only the smallest sufficient files listed under `routed_records`;
-5. preserve source jurisdiction, population, scope, uncertainty, and evidence class;
+5. for substantive medical claims, use the claim ledger and preserve population, intervention, comparator, outcome, evidence class, jurisdiction, source snapshots, uncertainty, and review status;
 6. keep self-help education separate from clinician-delivered CBT;
 7. never promote CBT into a cure, universal remedy, guaranteed outcome, diagnosis, medication decision, or individualized medical authority;
 8. interrupt routine CBT workflows when urgent safety or medical needs take priority; and
@@ -69,8 +69,21 @@ CBT self-help / exercises
   sources/public-sources.json
 
 Medical claim or clinical guideline question
+  claims/evidence-classes.json
+  claims/index.json
+  claims/conflicts.json
   sources/public-sources.json
+  sources/evidence-sources.json
+  sources/snapshots/manifest.json
   ai/medical-claim-boundary.json
+
+Evidence audit
+  claims/evidence-classes.json
+  claims/index.json
+  claims/conflicts.json
+  sources/public-sources.json
+  sources/evidence-sources.json
+  sources/snapshots/manifest.json
 
 CBT for cognitive work
   profiles/cognitive-work-addendum.json
@@ -87,6 +100,8 @@ Urgent safety
 Use https://github.com/QSOLKCB/cbt as the CBT context substrate for this conversation.
 
 Load ai/bootstrap.json first as the canonical machine entry point. Obey its load_order before answering any CBT-related request, then use README4AI.md as supplemental operator guidance. Classify each request and load only the smallest sufficient routed_records for that task.
+
+For substantive medical claims, use claims/index.json and preserve claim-local population, intervention, comparator, outcome, evidence class, jurisdiction, source snapshots, review status, uncertainty, limitations, and conflicts. Do not transfer evidence from an adjacent condition, population, protocol, comparator, outcome, or delivery format.
 
 Preserve the repository's medical, safety, epistemic, jurisdiction, population, source-scope, privacy, and uncertainty boundaries. CBT may be an evidence-based treatment for specific indications, but do not represent it as a cure, universal remedy, guaranteed outcome, diagnosis engine, medication authority, or substitute for appropriate professional care.
 
@@ -109,9 +124,28 @@ README4AI.md
 
 `README4AI.md` is supplemental guidance; it does not replace or precede the bootstrap contract.
 
-Then add the task-specific files named in `routed_records`. For example, an exercise-capable assistant also needs `exercises/index.json`, `profiles/learning-accessibility.json`, `examples/index.json`, and `sources/public-sources.json`.
+Then add the task-specific files named in `routed_records`. An exercise-capable assistant also needs `exercises/index.json`, `profiles/learning-accessibility.json`, `examples/index.json`, and `sources/public-sources.json`. A medical-claim-capable assistant needs the `claims/**` records plus `sources/evidence-sources.json` and `sources/snapshots/manifest.json`.
 
 If context space is limited, prefer the bootstrap's **smallest-sufficient routing** rather than loading the entire repository and hoping the model sorts it out.
+
+## Medical claim ledger
+
+Phase 3 adds a claim-local evidence spine.
+
+`claims/index.json` stores medical and evidence claims with explicit **population / intervention / comparator / outcome** fields, evidence class, jurisdiction, source IDs, source-snapshot IDs, review dates, and limitations.
+
+`claims/evidence-classes.json` keeps guidelines, randomized trials, systematic reviews/meta-analyses, public education, professional training material, mechanistic evidence, and archived guidance distinct. There is deliberately **no single global evidence rank** because those source classes answer different questions.
+
+`claims/conflicts.json` preserves material evidence differences instead of averaging them away. For example, aggregate GAD evidence and delivery-format-specific GAD evidence remain separate so an aggregate CBT result cannot silently become a claim about remote CBT.
+
+`sources/snapshots/manifest.json` is a versioned **metadata snapshot**, not a copy of journal or guideline text. Stale verification means a source is due to be re-checked; it does not mean a claim has automatically become false.
+
+Useful checks:
+
+```bash
+python3 tools/claim_ledger.py validate
+python3 tools/claim_ledger.py freshness
+```
 
 ## Core boundary
 
@@ -164,9 +198,10 @@ The policy layer is grounded in public, authoritative sources from:
 - NHS and the NHS Constitution for England
 - NICE
 - NHS Every Mind Matters
-- peer-reviewed neuroimaging literature used only for the cognitive-work mechanism addendum
+- peer-reviewed clinical and neuroimaging literature, with source-specific population/design/scope boundaries
+- historical Australian/Aotearoa New Zealand guidance retained only when explicitly marked reference-only
 
-See `sources/public-sources.json`.
+See `sources/public-sources.json` and `sources/evidence-sources.json`.
 
 ## Architecture
 
@@ -177,6 +212,10 @@ ai/
   medical-claim-boundary.json
   safety-escalation-policy.json
   source-policy.json
+claims/
+  evidence-classes.json
+  index.json
+  conflicts.json
 profiles/
   cbt-context.json
   cognitive-work-addendum.json
@@ -187,6 +226,9 @@ examples/
   index.json
 sources/
   public-sources.json
+  evidence-sources.json
+  snapshots/
+    manifest.json
 site/
   index.html
   styles.css
@@ -194,6 +236,7 @@ site/
   data/context.bundle.js   # generated projection
 tools/
   build_site_data.py
+  claim_ledger.py
   validate_context.py
 tests/
   test_context.py
@@ -206,6 +249,8 @@ tests/
 The site data is generated from canonical JSON and is intentionally not committed as medical evidence.
 
 ```bash
+python3 tools/claim_ledger.py validate
+python3 tools/claim_ledger.py freshness
 python3 tools/validate_context.py
 python3 tools/build_site_data.py
 python3 tools/build_site_data.py --check

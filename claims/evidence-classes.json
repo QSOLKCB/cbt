@@ -1,0 +1,15 @@
+{
+  "type": "cbt-evidence-class-registry",
+  "schema_version": "1.0.0",
+  "no_global_rank": true,
+  "principle": "Evidence classes answer different questions and must not be collapsed into a single confidence ladder.",
+  "classes": {
+    "guideline_recommendation": {"role": "Records a recommendation from an identified clinical guideline for a defined population and jurisdiction.", "can_establish": ["that the guideline recommends or offers an intervention in the stated context"], "cannot_establish": ["individual suitability", "cure", "comparative superiority unless the guideline explicitly states it"]},
+    "systematic_review_meta_analysis": {"role": "Synthesises results across multiple studies under stated inclusion criteria.", "can_establish": ["the review's pooled or comparative result within its study population, intervention, comparator and outcome scope"], "cannot_establish": ["individual response", "unmeasured populations", "all delivery formats unless analysed"]},
+    "randomized_controlled_trial": {"role": "Records a randomized comparison for a defined study sample and protocol.", "can_establish": ["the trial's reported between-group findings under its protocol"], "cannot_establish": ["universal effectiveness", "all CBT variants", "individual suitability"]},
+    "public_education": {"role": "Public educational or self-help material from an identified health authority.", "can_establish": ["that the authority teaches or describes the stated concept or exercise"], "cannot_establish": ["treatment efficacy", "diagnosis", "clinical equivalence to clinician-delivered CBT"]},
+    "professional_training_material": {"role": "Material intended for trained or supervised practitioners.", "can_establish": ["that a technique exists in professional CBT practice or training"], "cannot_establish": ["stand-alone self-help suitability", "competence to deliver therapy"]},
+    "mechanistic_evidence": {"role": "Experimental or observational evidence about a possible psychological or neural mechanism.", "can_establish": ["the reported association or mechanism under the study design"], "cannot_establish": ["clinical benefit", "productivity benefit", "individual neural state"]},
+    "archived_guideline": {"role": "A historically authoritative guideline that the issuing body no longer treats as current guidance.", "can_establish": ["what the historical guideline recommended at that time"], "cannot_establish": ["current clinical guidance", "current individual suitability"]}
+  }
+}

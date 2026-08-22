@@ -1,14 +1,19 @@
 {
   "type": "cbt-source-policy",
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "visibility": "public",
   "allowed_source_classes": [
     "australian_regulator",
     "australian_safety_quality_body",
     "nhs_public_guidance",
+    "nhs_training_resource",
     "uk_government_health_constitution",
     "nice_guideline",
     "peer_reviewed_pubmed",
+    "randomized_controlled_trial",
+    "systematic_review_meta_analysis",
+    "archived_guideline",
+    "australian_professional_body_status_page",
     "public_user_supplied_source_after_verification"
   ],
   "preferred_order": [
@@ -19,6 +24,7 @@
   ],
   "rules": [
     "every substantive canonical medical claim must resolve to a public source id",
+    "every routed source class must be explicitly registered in allowed_source_classes",
     "source authenticity does not prove every claim contained in the source",
     "preserve jurisdiction and review dates",
     "preserve disagreement instead of silently choosing one source",

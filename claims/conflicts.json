@@ -1,0 +1,15 @@
+{
+  "type": "cbt-claim-conflict-bundles",
+  "schema_version": "1.0.0",
+  "snapshot_date": "2026-08-22",
+  "rules": [
+    "never average incompatible claims into a synthetic consensus",
+    "preserve every observation and its scope",
+    "an apparent conflict may be resolved by population intervention comparator outcome jurisdiction or source-currency differences",
+    "unresolved conflicts must remain explicit"
+  ],
+  "bundles": [
+    {"id":"conflict.gad.aggregate-vs-delivery-format","kind":"scope_sensitive_evidence_difference","claim_ids":["claim.gad.meta.papola2024.cbt-vs-tau","claim.gad.meta.liu2025.delivery-format"],"summary":"An aggregate network meta-analysis reports CBT benefit versus treatment as usual, while a later delivery-format analysis reports materially different results by format, including no superiority for remote CBT versus treatment as usual or waiting list in that analysis.","status":"resolved_by_intervention_specificity","resolution_rule":"Do not transfer the aggregate CBT estimate to a specific delivery format. When the question is about remote, individual or group CBT, prefer the format-specific evidence while retaining the broader result as context.","preserve_all_observations":true,"do_not_average":true},
+    {"id":"conflict.depression.current-vs-archived-guidance","kind":"jurisdiction_and_currency_difference","claim_ids":["claim.depression.more-severe.nice.individual-cbt-option","claim.depression.ranzcp2020.historical-cbt-priority"],"summary":"Current NICE guidance and the historical 2020 RANZCP guideline use different treatment-choice framing and apply in different jurisdictions; the RANZCP document is now explicitly reference-only.","status":"resolved_by_authority_currency_and_jurisdiction","resolution_rule":"Do not merge or rank these as if they were simultaneous guidance for one jurisdiction. Preserve the RANZCP record historically and use current jurisdiction-specific guidance for current clinical-information questions.","preserve_all_observations":true,"do_not_average":true}
+  ]
+}

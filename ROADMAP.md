@@ -25,11 +25,11 @@
 
 ## Phase 3 — claim ledger
 
-- [ ] Add condition-specific claim records with population/intervention/comparator/outcome fields.
-- [ ] Distinguish guideline recommendation, trial evidence, systematic review, and educational material.
-- [ ] Add stale-source detection and review-date warnings.
-- [ ] Preserve conflicting guidance as explicit conflict bundles.
-- [ ] Add versioned source snapshots without copying restricted full text.
+- [x] Add condition-specific claim records with population/intervention/comparator/outcome fields.
+- [x] Distinguish guideline recommendation, trial evidence, systematic review, and educational material.
+- [x] Add stale-source detection and review-date warnings.
+- [x] Preserve conflicting guidance as explicit conflict bundles.
+- [x] Add versioned source snapshots without copying restricted full text.
 
 ## Phase 4 — model adapters
 

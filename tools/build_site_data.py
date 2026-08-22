@@ -12,6 +12,11 @@ INPUTS = [
     ("exercises", ROOT / "exercises" / "index.json"),
     ("examples", ROOT / "examples" / "index.json"),
     ("public_sources", ROOT / "sources" / "public-sources.json"),
+    ("evidence_sources", ROOT / "sources" / "evidence-sources.json"),
+    ("source_snapshots", ROOT / "sources" / "snapshots" / "manifest.json"),
+    ("evidence_classes", ROOT / "claims" / "evidence-classes.json"),
+    ("claim_ledger", ROOT / "claims" / "index.json"),
+    ("claim_conflicts", ROOT / "claims" / "conflicts.json"),
     ("medical_claim_boundary", ROOT / "ai" / "medical-claim-boundary.json"),
 ]
 OUTPUT = ROOT / "site" / "data" / "context.bundle.js"
