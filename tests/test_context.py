@@ -30,16 +30,38 @@ class ContextTests(unittest.TestCase):
         profile = load("profiles/cbt-context.json")
         self.assertIn("not automatically equivalent", profile["clinical_boundary"]["not_equivalent"])
 
+    def test_self_help_route_loads_source_registry(self):
+        bootstrap = load("ai/bootstrap.json")
+        self.assertIn("sources/public-sources.json", bootstrap["routed_records"]["cbt_self_help"])
+
     def test_cognitive_work_caveat(self):
         work = load("profiles/cognitive-work-addendum.json")
         self.assertIn("move emotion into the prefrontal cortex", work["avoid_framing"])
         self.assertTrue(any("productivity guarantee" in x for x in work["mechanism_summary"]))
+        self.assertTrue(work["evidence_scope"])
+        self.assertTrue(any("do not generalise laboratory neuroimaging findings" in x for x in work["guardrails"]))
 
-    def test_every_exercise_explains_mechanism(self):
+    def test_neuroscience_sources_preserve_scope(self):
+        sources = load("sources/public-sources.json")
+        neuro = [s for s in sources["sources"] if s["class"] == "peer_reviewed_pubmed"]
+        self.assertGreaterEqual(len(neuro), 2)
+        for source in neuro:
+            self.assertTrue(source["population"])
+            self.assertTrue(source["design"])
+            self.assertTrue(source["scope_limitations"])
+
+    def test_every_exercise_explains_mechanism_and_safety(self):
         data = load("exercises/index.json")
         for ex in data["exercises"]:
             self.assertTrue(ex["mechanism"])
             self.assertTrue(ex["not_established"])
+            self.assertTrue(ex["pause_or_support"])
+
+    def test_site_has_missing_bundle_and_clear_guards(self):
+        app = (ROOT/"site"/"app.js").read_text(encoding="utf-8")
+        self.assertIn("if (!ctx)", app)
+        self.assertIn("#exerciseForm textarea", app)
+        self.assertIn("When to pause or seek support", app)
 
 if __name__ == "__main__":
     unittest.main()
