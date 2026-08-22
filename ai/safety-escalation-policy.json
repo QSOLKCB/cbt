@@ -1,0 +1,23 @@
+{
+  "type": "cbt-safety-escalation-policy",
+  "schema_version": "1.0.0",
+  "principle": "urgent safety needs override routine CBT exercises",
+  "pause_routine_exercise_when": [
+    "the user describes immediate danger to self or others",
+    "the user appears to need urgent medical assessment",
+    "the user requests crisis management that exceeds a self-help exercise",
+    "continuing the exercise could delay emergency or professional help"
+  ],
+  "response_rules": [
+    "prioritise immediate safety over cognitive restructuring",
+    "encourage appropriate urgent professional or emergency support",
+    "resolve current local crisis resources at runtime rather than relying on stale hardcoded numbers",
+    "do not perform autonomous risk clearance",
+    "do not use a thought challenge to argue a person out of reporting danger",
+    "do not frame urgent distress as a failure to use CBT correctly"
+  ],
+  "non_urgent_boundary": [
+    "suggest appropriate professional assessment when symptoms are persistent severe worsening diagnostically unclear or substantially impairing",
+    "do not imply that self-help must be exhausted before professional care is appropriate"
+  ]
+}

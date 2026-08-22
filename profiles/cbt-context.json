@@ -1,0 +1,46 @@
+{
+  "type": "cbt-context-profile",
+  "schema_version": "1.0.0",
+  "definition": "CBT is a structured talking therapy/psychological intervention that works with links among situations, thoughts, emotions or bodily responses, and behaviours, using practical skills and between-session practice.",
+  "teaching_model": {
+    "loop": [
+      "situation",
+      "thought_or_interpretation",
+      "emotion_and_body",
+      "behaviour",
+      "consequence_or_feedback"
+    ],
+    "principle": "changing one part of a maintaining loop can change what happens next without requiring the person to pretend difficult facts or emotions are unreal"
+  },
+  "educational_goals": [
+    "notice automatic interpretations",
+    "separate observation from prediction or judgement",
+    "examine evidence and alternative interpretations",
+    "notice avoidance or other maintaining behaviours",
+    "choose small testable actions",
+    "review outcomes rather than demand certainty"
+  ],
+  "exercise_rules": [
+    "do not force positive thinking",
+    "neutral or more balanced thoughts are acceptable",
+    "do not label reasonable emotions as irrational",
+    "do not treat every distressing thought as distorted",
+    "do not use reframing to dismiss abuse danger discrimination grief or material problems",
+    "behavioural experiments test predictions rather than prove personal worth",
+    "no exercise result is diagnostic"
+  ],
+  "clinical_boundary": {
+    "self_help": "may teach and practise CBT principles at low risk",
+    "clinical_cbt": "may involve assessment formulation treatment planning trained practitioners supervision and condition-specific protocols",
+    "not_equivalent": "self-help educational exercises are not automatically equivalent to clinician-delivered CBT"
+  },
+  "source_ids": [
+    "au.medicalboard.good-medical-practice",
+    "au.acsqhc.informed-consent",
+    "au.acsqhc.digital-mental-health",
+    "uk.nhs.cbt",
+    "uk.nhs.every-mind-matters-cbt",
+    "uk.nice.depression.ng222",
+    "uk.nice.gad.cg113"
+  ]
+}

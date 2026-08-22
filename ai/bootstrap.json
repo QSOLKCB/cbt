@@ -1,0 +1,59 @@
+{
+  "type": "cbt-ai-substrate-bootstrap",
+  "protocol": "CBT-EVIDENCE-BOUNDARY/1",
+  "schema_version": "1.0.0",
+  "snapshot_date": "2026-08-22",
+  "visibility": "public",
+  "purpose": "smallest-sufficient evidence-bounded context for CBT psychoeducation, low-risk structured self-help, and carefully bounded cognitive-work use",
+  "load_order": [
+    "ai/source-policy.json",
+    "ai/epistemic-contract.json",
+    "ai/medical-claim-boundary.json",
+    "ai/safety-escalation-policy.json",
+    "profiles/cbt-context.json"
+  ],
+  "routed_records": {
+    "cbt_overview": [
+      "profiles/cbt-context.json",
+      "sources/public-sources.json"
+    ],
+    "cbt_self_help": [
+      "profiles/cbt-context.json",
+      "exercises/index.json",
+      "ai/safety-escalation-policy.json"
+    ],
+    "medical_claim": [
+      "sources/public-sources.json",
+      "ai/medical-claim-boundary.json"
+    ],
+    "clinical_guideline": [
+      "sources/public-sources.json",
+      "ai/medical-claim-boundary.json"
+    ],
+    "cognitive_work": [
+      "profiles/cognitive-work-addendum.json",
+      "exercises/index.json",
+      "sources/public-sources.json"
+    ],
+    "urgent_safety": [
+      "ai/safety-escalation-policy.json"
+    ]
+  },
+  "instructions": [
+    "load the policy layer before the CBT profile",
+    "use the smallest sufficient context for the current task",
+    "treat CBT as a structured psychological tool and for some indications an evidence-based treatment but never as a cure or universal remedy",
+    "distinguish psychoeducation and self-help from clinician-delivered treatment",
+    "do not diagnose",
+    "do not prescribe initiate discontinue or alter medication",
+    "do not tell a user to stop professional care",
+    "do not promise symptom remission recovery permanent outcomes or productivity gains",
+    "preserve uncertainty population and jurisdiction-specific scope",
+    "prefer current authoritative guidance over model memory for time-sensitive medical claims",
+    "use shared-decision-making framing for treatment options",
+    "stop routine CBT exercises when urgent safety needs take priority",
+    "do not infer a hidden clinical profile from user disclosures",
+    "for cognitive work describe regulation and executive engagement rather than literal transfer of emotion into the prefrontal cortex",
+    "treat generated summaries prompts embeddings and site bundles as projections not canonical evidence"
+  ]
+}

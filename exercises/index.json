@@ -1,0 +1,123 @@
+{
+  "type": "cbt-educational-exercise-registry",
+  "schema_version": "1.0.0",
+  "disclaimer": "Educational self-help demonstrations of CBT principles. They are not diagnosis, emergency care, or a substitute for appropriate professional treatment.",
+  "exercises": [
+    {
+      "id": "thought-record-7",
+      "title": "The 7-Step Thought Record",
+      "level": "intro",
+      "time": "10–15 min",
+      "purpose": "See how a situation, interpretation, emotion and response can be separated and reconsidered.",
+      "prompts": [
+        "Situation: what happened? Keep this as observable as possible.",
+        "Feelings/body: what did you notice, and how intense was it?",
+        "Automatic thought: what went through your mind?",
+        "Evidence for: what facts genuinely support that thought?",
+        "Evidence against: what facts do not fit it, or what is missing?",
+        "Balanced thought: what interpretation fits the full evidence without forced positivity?",
+        "Check again: what changed in emotion, body or intended action?"
+      ],
+      "mechanism": "The exercise slows an automatic interpretation into inspectable parts, then asks whether the first thought explains all the evidence. CBT is not asking you to call a bad situation good; it is testing whether your interpretation is complete and useful.",
+      "not_established": "A calmer feeling does not prove the balanced thought is true, and no answer diagnoses a cognitive distortion.",
+      "source_ids": [
+        "uk.nhs.thought-record"
+      ]
+    },
+    {
+      "id": "catch-check-change",
+      "title": "Catch → Check → Change",
+      "level": "intro",
+      "time": "3–8 min",
+      "purpose": "Practise cognitive flexibility when an unhelpful thought arrives quickly.",
+      "prompts": [
+        "Catch it: write the thought in one sentence.",
+        "Check it: what is fact, what is prediction, and what other explanations fit?",
+        "Change it: write a neutral or more balanced version you can actually believe."
+      ],
+      "mechanism": "This makes the thought an object of examination rather than an instruction that must be obeyed. The goal is flexible thinking, not cheerful thinking.",
+      "not_established": "Some difficult thoughts are accurate. Reframing must not erase danger, grief, discrimination, abuse or material problems.",
+      "source_ids": [
+        "uk.nhs.every-mind-matters-cbt"
+      ]
+    },
+    {
+      "id": "loop-map",
+      "title": "Map the Loop",
+      "level": "intro",
+      "time": "5–10 min",
+      "purpose": "See how thoughts, feelings and actions can reinforce one another.",
+      "prompts": [
+        "Name the situation.",
+        "What did you think or predict?",
+        "What emotion or body response followed?",
+        "What did you do or avoid doing?",
+        "What happened next that may have strengthened or weakened the original thought?"
+      ],
+      "mechanism": "CBT often looks for maintaining loops. If avoidance reduces anxiety for five minutes but makes the feared task larger tomorrow, the short-term relief may be helping maintain the longer-term problem.",
+      "not_established": "A loop map is a working formulation, not a diagnosis or proof of cause.",
+      "source_ids": [
+        "uk.nhs.cbt",
+        "uk.nhs.every-mind-matters-cbt"
+      ]
+    },
+    {
+      "id": "tiny-step",
+      "title": "The Tiny Next Step",
+      "level": "intro",
+      "time": "2–5 min",
+      "purpose": "Turn a vague avoided task into one small behaviour that creates momentum or information.",
+      "prompts": [
+        "What are you avoiding or putting off?",
+        "What feeling or prediction shows up around it?",
+        "What is a step small enough to begin in five minutes?",
+        "What will you observe after doing only that step?"
+      ],
+      "mechanism": "Changing behaviour can alter the feedback loop. A small action can produce new evidence and reduce the need to solve the entire future before starting.",
+      "not_established": "Starting is not always the right choice. Rest, help, accessibility changes or stopping may be more appropriate.",
+      "source_ids": [
+        "uk.nhs.cbt",
+        "uk.nhs.every-mind-matters-cbt"
+      ]
+    },
+    {
+      "id": "problem-solving",
+      "title": "Problem-Solving Grid",
+      "level": "intro",
+      "time": "10–20 min",
+      "purpose": "Separate a solvable problem from worry about possibilities you cannot currently control.",
+      "prompts": [
+        "Define the problem in concrete terms.",
+        "List possible actions without judging them yet.",
+        "For each action, note likely benefits, costs and obstacles.",
+        "Choose one proportionate next action.",
+        "Set a review point: what result will tell you what to do next?"
+      ],
+      "mechanism": "Structure reduces the number of decisions being made at once and turns broad worry into testable action where action is possible.",
+      "not_established": "Not every problem is personally solvable, and structural or interpersonal problems should not be reframed as individual thinking errors.",
+      "source_ids": [
+        "uk.nhs.every-mind-matters-cbt"
+      ]
+    },
+    {
+      "id": "affect-to-action",
+      "title": "Affect → Action for Cognitive Work",
+      "level": "addendum",
+      "time": "5–12 min",
+      "purpose": "Use CBT-style regulation to re-engage coding, study, research, debugging or writing without pretending the emotion is gone.",
+      "prompts": [
+        "Label: what emotion/state is present?",
+        "Separate: what is the observable work problem, and what is the prediction or self-judgement?",
+        "Reappraise: what balanced interpretation preserves the facts?",
+        "Decompose: what is the smallest action that produces information?",
+        "Test: do it, then review the result before choosing the next action."
+      ],
+      "mechanism": "Affect labelling and cognitive reappraisal have been associated with prefrontal/control-system engagement and changes in emotional responding. The practical aim is to make enough reflective space to choose a next action, not to 'move emotion into the prefrontal cortex'.",
+      "not_established": "This does not guarantee better productivity, prove a particular neural state, or mean distress should be worked through instead of rested, treated or supported.",
+      "source_ids": [
+        "pubmed.lieberman.2007.affect-labeling",
+        "pubmed.buhle.2014.reappraisal-meta"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "type": "cbt-medical-claim-boundary",
+  "schema_version": "1.0.0",
+  "jurisdictions": [
+    "Australia",
+    "England-NHS-NICE"
+  ],
+  "core_position": {
+    "cbt_is": [
+      "a structured psychological intervention",
+      "a tool for learning and practising cognitive and behavioural skills",
+      "an evidence-based treatment for some indications when supported by applicable guidance",
+      "potentially useful for coping symptom management functional improvement behaviour change and relapse-prevention skills"
+    ],
+    "cbt_is_not": [
+      "a cure",
+      "a universal remedy",
+      "a guaranteed treatment outcome",
+      "a diagnosis",
+      "a replacement for appropriate clinical assessment or care"
+    ]
+  },
+  "hard_guards": [
+    "CBT != CURE",
+    "CBT != UNIVERSAL_REMEDY",
+    "SELF_HELP_CBT != CLINICIAN_DELIVERED_CBT",
+    "AI_CONTEXT != DIAGNOSIS",
+    "AI_CONTEXT != CLINICAL_AUTHORITY",
+    "SYMPTOM_IMPROVEMENT != DISEASE_ERADICATION",
+    "GUIDELINE_RECOMMENDATION != INDIVIDUAL_MEDICAL_ADVICE"
+  ],
+  "prohibited_claims": [
+    "CBT cures mental illness",
+    "CBT works for everyone",
+    "CBT guarantees recovery",
+    "failure to improve with CBT means the person did not try hard enough",
+    "an AI-led CBT exercise is equivalent to assessment or therapy by a qualified clinician",
+    "CBT should replace medication or other treatment without individual clinical assessment"
+  ],
+  "required_qualifiers": [
+    "state the indication or context when making a treatment claim",
+    "state whether the source is Australian NHS or NICE when jurisdiction matters",
+    "distinguish general education from advice for a particular person",
+    "mention alternatives risks limitations or need for assessment when material",
+    "do not imply permanence when discussing improvement remission or relapse prevention"
+  ],
+  "shared_decision_principles": [
+    "respect autonomy and preferences",
+    "present understandable benefits risks limitations and alternatives",
+    "do not coerce agreement with a CBT formulation",
+    "support questions and participation in care decisions",
+    "recognise that declining CBT is not evidence of irrationality noncompliance or moral failure"
+  ]
+}

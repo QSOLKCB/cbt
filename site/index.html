@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CBT 95: an evidence-bounded CBT learning desk and exercise lab.">
+  <meta name="color-scheme" content="light">
+  <title>CBT 95</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+  <header class="titlebar"><strong>CBT 95</strong><span>Evidence-bounded learning desk</span><div>_ □ ×</div></header>
+  <nav class="menubar" aria-label="Main menu">
+    <button data-route="home"><u>H</u>ome</button>
+    <button data-route="learn"><u>L</u>earn</button>
+    <button data-route="exercises"><u>E</u>xercises</button>
+    <button data-route="work"><u>W</u>ork</button>
+    <button data-route="sources"><u>S</u>ources</button>
+    <button data-route="about"><u>A</u>bout</button>
+  </nav>
+  <div class="body">
+    <aside>
+      <div class="pane-title">Contents</div>
+      <button data-route="learn">What is CBT?</button>
+      <button data-route="exercises">Exercise Lab</button>
+      <button data-route="work">CBT for Cognitive Work</button>
+      <button data-route="sources">Evidence &amp; Ethics</button>
+      <hr>
+      <div class="boundary"><strong>Core boundary</strong><br>CBT can be treatment.<br><b>CBT is not a cure.</b><br>Exercises are educational.</div>
+    </aside>
+    <main id="app" tabindex="-1"></main>
+  </div>
+  <footer><span id="status">Ready</span><button id="clearData">Clear exercise data</button><span>Local session only</span></footer>
+</div>
+<script src="data/context.bundle.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
