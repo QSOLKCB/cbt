@@ -30,6 +30,10 @@ def main() -> int:
         "profiles/cbt-context.json",
     ]
     require(bootstrap["load_order"] == required_order, "policy load order changed")
+    require(
+        "sources/public-sources.json" in bootstrap["routed_records"]["cbt_self_help"],
+        "self-help route must load source metadata",
+    )
 
     guards = set(boundary["hard_guards"])
     for guard in {
@@ -44,6 +48,11 @@ def main() -> int:
     require(epi["fallback_state"] == "unknown", "epistemic contract must fail to unknown")
     require("urgent safety needs override routine CBT exercises" == safety["principle"], "safety override weakened")
     require("move emotion into the prefrontal cortex" in work["avoid_framing"], "neuroscience cartoon guard missing")
+    require(work.get("evidence_scope"), "cognitive-work evidence scope missing")
+    require(
+        any("do not generalise laboratory neuroimaging findings" in x for x in work["guardrails"]),
+        "cognitive-work generalisation guard missing",
+    )
 
     source_ids = {s["id"] for s in sources["sources"]}
     require(len(source_ids) == len(sources["sources"]), "duplicate source id")
@@ -58,12 +67,17 @@ def main() -> int:
     }:
         require(needed in source_ids, f"missing critical source {needed}")
 
+    for source in sources["sources"]:
+        if source["class"] == "peer_reviewed_pubmed":
+            for field in ("population", "design", "scope_limitations"):
+                require(source.get(field), f"{source['id']} missing {field}")
+
     require(len(exercises["exercises"]) >= 6, "exercise baseline shrank")
     ids = set()
     for exercise in exercises["exercises"]:
         require(exercise["id"] not in ids, f"duplicate exercise {exercise['id']}")
         ids.add(exercise["id"])
-        for field in ("purpose","prompts","mechanism","not_established","source_ids"):
+        for field in ("purpose","prompts","mechanism","not_established","pause_or_support","source_ids"):
             require(exercise.get(field), f"{exercise['id']} missing {field}")
         for source_id in exercise["source_ids"]:
             require(source_id in source_ids, f"{exercise['id']} references unknown source {source_id}")
