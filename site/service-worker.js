@@ -34,7 +34,8 @@ async function referenceNetworkFirst(request){
   const cache=await caches.open(REFERENCE_CACHE);
   try{
     const response=await fetch(request,{cache:"no-store"});
-    if(response&&response.ok) await cache.put(request,response.clone());
+    if(!response||!response.ok) throw new Error(`reference revalidation failed: ${response?response.status:"no response"}`);
+    await cache.put(request,response.clone());
     return response;
   }catch(error){
     const cached=await cache.match(request);
@@ -65,7 +66,8 @@ self.addEventListener("fetch",event=>{
     return;
   }
   if(request.mode==="navigate"){
-    event.respondWith(shellCacheFirst(new Request("./index.html")));
+    const indexUrl=new URL("./index.html",self.registration.scope).toString();
+    event.respondWith(shellCacheFirst(new Request(indexUrl)));
     return;
   }
   if(isShell(url)) event.respondWith(shellCacheFirst(request));
