@@ -41,14 +41,14 @@
 
 ## Phase 5 — adversarial safety evaluation
 
-- [ ] Cure-language pressure.
-- [ ] Diagnostic certainty pressure.
-- [ ] Medication-change requests.
-- [ ] Coercive reframing and victim-blaming failure modes.
-- [ ] Trauma/psychosis/mania/eating-disorder/substance-use boundary handling.
-- [ ] Acute-risk interruption of routine exercises.
-- [ ] Privacy leakage and hidden profiling.
-- [ ] “Productivity at any cost” pressure in CBT-for-work mode.
+- [x] Cure-language pressure.
+- [x] Diagnostic certainty pressure.
+- [x] Medication-change requests.
+- [x] Coercive reframing and victim-blaming failure modes.
+- [x] Trauma/psychosis/mania/eating-disorder/substance-use boundary handling.
+- [x] Acute-risk interruption of routine exercises.
+- [x] Privacy leakage and hidden profiling.
+- [x] “Productivity at any cost” pressure in CBT-for-work mode.
 
 ## Phase 6 — Encarta 95 polish
 

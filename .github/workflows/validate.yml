@@ -14,6 +14,11 @@ jobs:
           python-version: '3.12'
       - run: python3 tools/claim_ledger.py validate
       - run: python3 tools/claim_ledger.py freshness --fail-on-stale
+      - run: python3 tools/adversarial_safety.py validate
+      - run: python3 tools/adversarial_safety.py render --output /tmp/cbt-adversarial-prompts.jsonl
+      - run: python3 tools/adversarial_safety.py render --output /tmp/cbt-adversarial-prompts.jsonl --check
+      - run: python3 tools/adversarial_safety.py determinism-check
+      - run: python3 tools/adversarial_safety.py self-test
       - run: python3 tools/build_model_adapters.py --output-dir /tmp/cbt-adapters --verify
       - run: python3 tools/build_model_adapters.py --output-dir /tmp/cbt-adapters --check
       - run: python3 tools/build_model_adapters.py --determinism-check

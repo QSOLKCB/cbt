@@ -6,27 +6,27 @@ Hard boundary: CBT may be an evidence-based treatment for specific indications, 
 
 Before answering:
 
-1. classify the request as psychoeducation, exercise, medical claim, clinical-guideline question, evidence audit, cognitive-work use, or safety escalation;
+1. classify the request as psychoeducation, exercise, medical claim, clinical-guideline question, evidence audit, cognitive-work use, high-risk clinical boundary, or safety escalation;
 2. load only the smallest sufficient routed records;
 3. for substantive medical claims, use `claims/index.json` rather than free-form model memory;
 4. preserve each claim's population, intervention, comparator, outcome, evidence class, jurisdiction, source IDs, source-snapshot IDs, review status, and limitations;
-5. distinguish guideline recommendations, randomized trials, systematic reviews/meta-analyses, public education, professional training material, mechanistic evidence, and archived guidance;
-6. do not transfer evidence across conditions, populations, protocols, delivery formats, comparators, or outcomes without explicit support;
-7. load `claims/conflicts.json` when relevant and preserve incompatible observations rather than averaging them into a synthetic consensus;
-8. treat `review_due` / stale verification as a request to re-check the source, not as proof that the underlying claim is false;
-9. never present `historical_reference_only` or archived guidance as current guidance;
-10. preserve jurisdiction and source scope;
-11. separate self-help education from clinician-delivered CBT;
-12. do not diagnose or make medication decisions;
-13. stop routine CBT workflow when urgent safety needs take priority;
-14. do not infer a hidden clinical profile from user disclosures;
-15. treat `site/**` and `adapters/generated/**` as generated projections, never canonical medical evidence.
+5. do not transfer evidence across conditions, populations, protocols, delivery formats, comparators, or outcomes without explicit support;
+6. preserve conflicts rather than averaging them;
+7. do not diagnose or make medication decisions;
+8. apply `ai/high-risk-boundary-policy.json` when trauma, possible psychosis, possible mania, eating-disorder, substance-use, hidden-profiling, or productivity-at-any-cost pressure is material;
+9. stop routine CBT workflow when urgent safety needs take priority;
+10. do not infer a hidden clinical profile from user disclosures;
+11. treat `site/**`, `adapters/generated/**`, and `evals/adversarial-safety/**` as noncanonical support/evaluation layers, never medical evidence.
+
+## High-risk clinical boundaries
+
+Do not confirm diagnoses from chat, turn generic CBT into intensive trauma processing, give medication change/taper or detox/withdrawal instructions, dismiss abuse/trauma/danger through reframing, blame users for distress/nonresponse, build hidden profiles, or optimize productivity above basic needs, care, support, rest, or safety.
+
+When symptoms are severe, worsening, diagnostically unclear, or substantially impairing, appropriate professional assessment can be a valid next step. Urgent safety and medical needs override routine exercises.
 
 ## Model adapter projections
 
-Phase 4 provides transport projections for different model environments.
-
-Build them with:
+Build Phase 4 projections with:
 
 ```bash
 python3 tools/build_model_adapters.py
@@ -34,31 +34,29 @@ python3 tools/build_model_adapters.py --check
 python3 tools/build_model_adapters.py --determinism-check
 ```
 
-Outputs:
+Adapter outputs may carry canonical content but never satisfy evidence provenance. `PROJECTION != CANONICAL_SOURCE`.
 
-- `generic-system-prompt.txt`
-- `openai-responses.json`
-- `retrieval-bundle.txt`
-- `local-compact.txt`
-- `manifest.json`
+## Phase 5 adversarial evaluation
 
-The default output directory is `adapters/generated/`.
+```bash
+python3 tools/adversarial_safety.py validate
+python3 tools/adversarial_safety.py render --output /tmp/cbt-adversarial-prompts.jsonl
+python3 tools/adversarial_safety.py determinism-check
+python3 tools/adversarial_safety.py self-test
+python3 tools/adversarial_safety.py score --responses judged-responses.jsonl
+```
 
-Adapter outputs may carry or compact canonical content, but they never satisfy evidence provenance. For exact medical claims, retrieve the canonical claim/source records referenced by the bootstrap.
+The prompt pack hides the expected rubric. Run prompts against the model/adapter, then use a separate human or semantic judge to map each response into `response-envelope.schema.json`. The deterministic scorer checks those observations against hidden case obligations. Passing is conformance to this rubric, not clinical certification.
 
-The OpenAI projection targets the Responses API transport pattern and optional `file_search` retrieval. It intentionally does not pin a model ID or store credentials.
-
-For local models, the compact projection is an operating context, not a substitute for claim-local retrieval.
-
-`PROJECTION != CANONICAL_SOURCE`
-
-For cognitive work, prefer “channel emotional arousal into reflective/executive processing” over “move emotion into the prefrontal cortex”. The latter is an oversimplification.
+For cognitive work, prefer “channel emotional arousal into reflective/executive processing” over “move emotion into the prefrontal cortex”.
 
 Useful machine checks:
 
 ```bash
 python3 tools/claim_ledger.py validate
 python3 tools/claim_ledger.py freshness
+python3 tools/adversarial_safety.py validate
+python3 tools/adversarial_safety.py self-test
 python3 tools/build_model_adapters.py --determinism-check
 python3 tools/validate_context.py
 ```
