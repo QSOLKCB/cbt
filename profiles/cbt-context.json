@@ -1,6 +1,6 @@
 {
   "type": "cbt-context-profile",
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "definition": "CBT is a structured talking therapy/psychological intervention that works with links among situations, thoughts, emotions or bodily responses, and behaviours, using practical skills and between-session practice.",
   "teaching_model": {
     "loop": [
@@ -10,6 +10,13 @@
       "behaviour",
       "consequence_or_feedback"
     ],
+    "node_definitions": {
+      "situation": "The observable event, context or trigger being considered. Keep this as close to what happened as possible before adding interpretation.",
+      "thought_or_interpretation": "The meaning, prediction, judgement or automatic thought attached to the situation. CBT may examine whether it fits the available evidence.",
+      "emotion_and_body": "The emotional and bodily responses present in the loop, such as anxiety, sadness, frustration, tension or activation.",
+      "behaviour": "What the person does, avoids, postpones, checks, approaches or changes in response to the situation, thought and emotion.",
+      "consequence_or_feedback": "What happens next, including short-term relief, new information or consequences that may strengthen or weaken the original loop."
+    },
     "principle": "changing one part of a maintaining loop can change what happens next without requiring the person to pretend difficult facts or emotions are unreal"
   },
   "educational_goals": [
