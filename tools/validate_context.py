@@ -33,6 +33,8 @@ def main():
     examples = load("examples/index.json")
     access = load("profiles/learning-accessibility.json")
     work = load("profiles/cognitive-work-addendum.json")
+    profile = load("profiles/cbt-context.json")
+    glossary = load("profiles/cbt-glossary.json")
 
     required = [
         "ai/source-policy.json",
@@ -94,13 +96,20 @@ def main():
             for field in ("population", "design", "scope_limitations"):
                 require(source.get(field), f"{source['id']} missing {field}")
 
+    loop = profile.get("teaching_model", {}).get("loop", [])
+    loop_set = set(loop)
+    require(loop == ["situation", "thought_or_interpretation", "emotion_and_body", "behaviour", "consequence_or_feedback"], "canonical teaching loop changed unexpectedly")
+
     ids = set()
     require(len(exercises["exercises"]) >= 10, "phase-2 exercise baseline shrank")
     for ex in exercises["exercises"]:
         require(ex["id"] not in ids, f"duplicate exercise {ex['id']}")
         ids.add(ex["id"])
-        for field in ("purpose", "prompts", "mechanism", "not_established", "pause_or_support", "source_ids"):
+        for field in ("purpose", "prompts", "mechanism", "not_established", "pause_or_support", "source_ids", "teaching_loop_nodes"):
             require(ex.get(field), f"{ex['id']} missing {field}")
+        nodes = ex["teaching_loop_nodes"]
+        require(len(nodes) == len(set(nodes)), f"{ex['id']} has duplicate teaching loop node")
+        require(set(nodes).issubset(loop_set), f"{ex['id']} references unknown teaching loop node")
         for sid in ex["source_ids"]:
             require(sid in source_ids, f"{ex['id']} references unknown source {sid}")
     require({"worry-time", "graded-task-ladder", "behavioural-experiment", "setback-plan"}.issubset(ids), "phase-2 exercise missing")
@@ -109,6 +118,14 @@ def main():
     require(ids == set(examples["examples"]), "synthetic examples must cover every exercise")
     require(any("never reads user-entered answers" in x for x in examples["rules"]), "example privacy guard missing")
     require(any("must not print user-entered answers" in x for x in access["principles"]), "blank-print privacy guard missing")
+
+    terms = glossary.get("terms", [])
+    glossary_ids = [row.get("id") for row in terms]
+    glossary_terms = [row.get("term") for row in terms]
+    require(len(terms) >= 10, "Phase 6 glossary baseline too small")
+    require(all(glossary_ids) and len(glossary_ids) == len(set(glossary_ids)), "glossary IDs missing or duplicated")
+    require(all(glossary_terms) and len(glossary_terms) == len(set(glossary_terms)), "glossary terms missing or duplicated")
+    require(all(row.get("definition") for row in terms), "glossary definition missing")
 
     claim_errors = validate_repository(ROOT)
     require(not claim_errors, "claim ledger invalid: " + "; ".join(claim_errors))
