@@ -58,6 +58,26 @@ Archived guidance remains available for provenance but must never be presented a
 
 Do not copy restricted full text into source snapshots. A metadata fingerprint is not a hash of the remote article or guideline body.
 
+## Model adapter projections
+
+`adapters/projection-spec.json` and `tools/build_model_adapters.py` define Phase 4 transport projections.
+
+Generated outputs live under `adapters/generated/` and are intentionally ignored by Git.
+
+Rules:
+
+- generated adapter output is never canonical medical evidence;
+- do not add `adapters/generated/**` to bootstrap `load_order` or `routed_records`;
+- do not use generated adapter paths as claim `source_ids` or `snapshot_ids`;
+- do not make generated adapter files inputs to the adapter compiler;
+- byte-for-byte determinism proves reproducibility only, not medical authority;
+- retrieval similarity or vector score is not evidence strength;
+- the compact local-model projection must direct exact medical claims back to canonical claim/source records;
+- the OpenAI adapter must not store API keys, credentials, user data, or a hard-coded model choice;
+- do not hand-edit generated projections; update canonical inputs or the builder and regenerate.
+
+`PROJECTION != CANONICAL_SOURCE` is the governing invariant.
+
 ## Exercise design
 
 Each exercise must state:

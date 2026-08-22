@@ -1,19 +1,33 @@
 {
   "type": "cbt-ai-substrate-bootstrap",
   "protocol": "CBT-EVIDENCE-BOUNDARY/1",
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "snapshot_date": "2026-08-22",
   "visibility": "public",
-  "purpose": "smallest-sufficient evidence-bounded context for CBT psychoeducation, low-risk structured self-help, carefully bounded cognitive-work use, and claim-local medical evidence reasoning",
-  "load_order": ["ai/source-policy.json","ai/epistemic-contract.json","ai/medical-claim-boundary.json","ai/safety-escalation-policy.json","profiles/cbt-context.json"],
+  "purpose": "smallest-sufficient evidence-bounded context for CBT psychoeducation, low-risk structured self-help, carefully bounded cognitive-work use, claim-local medical evidence reasoning, and non-canonical model-adapter projections",
+  "load_order": [
+    "ai/source-policy.json",
+    "ai/epistemic-contract.json",
+    "ai/medical-claim-boundary.json",
+    "ai/safety-escalation-policy.json",
+    "profiles/cbt-context.json"
+  ],
   "routed_records": {
-    "cbt_overview": ["profiles/cbt-context.json","sources/public-sources.json"],
-    "cbt_self_help": ["profiles/cbt-context.json","profiles/learning-accessibility.json","exercises/index.json","examples/index.json","ai/safety-escalation-policy.json","sources/public-sources.json"],
-    "medical_claim": ["claims/evidence-classes.json","claims/index.json","claims/conflicts.json","sources/public-sources.json","sources/evidence-sources.json","sources/snapshots/manifest.json","ai/medical-claim-boundary.json"],
-    "clinical_guideline": ["claims/evidence-classes.json","claims/index.json","claims/conflicts.json","sources/public-sources.json","sources/evidence-sources.json","sources/snapshots/manifest.json","ai/medical-claim-boundary.json"],
-    "evidence_audit": ["claims/evidence-classes.json","claims/index.json","claims/conflicts.json","sources/public-sources.json","sources/evidence-sources.json","sources/snapshots/manifest.json"],
-    "cognitive_work": ["profiles/cognitive-work-addendum.json","exercises/index.json","sources/public-sources.json"],
+    "cbt_overview": ["profiles/cbt-context.json", "sources/public-sources.json"],
+    "cbt_self_help": ["profiles/cbt-context.json", "profiles/learning-accessibility.json", "exercises/index.json", "examples/index.json", "ai/safety-escalation-policy.json", "sources/public-sources.json"],
+    "medical_claim": ["claims/evidence-classes.json", "claims/index.json", "claims/conflicts.json", "sources/public-sources.json", "sources/evidence-sources.json", "sources/snapshots/manifest.json", "ai/medical-claim-boundary.json"],
+    "clinical_guideline": ["claims/evidence-classes.json", "claims/index.json", "claims/conflicts.json", "sources/public-sources.json", "sources/evidence-sources.json", "sources/snapshots/manifest.json", "ai/medical-claim-boundary.json"],
+    "evidence_audit": ["claims/evidence-classes.json", "claims/index.json", "claims/conflicts.json", "sources/public-sources.json", "sources/evidence-sources.json", "sources/snapshots/manifest.json"],
+    "cognitive_work": ["profiles/cognitive-work-addendum.json", "exercises/index.json", "sources/public-sources.json"],
     "urgent_safety": ["ai/safety-escalation-policy.json"]
+  },
+  "projection_interfaces": {
+    "model_adapters": {
+      "canonical": false,
+      "spec": "adapters/projection-spec.json",
+      "builder": "tools/build_model_adapters.py",
+      "generated_output_dir": "adapters/generated/"
+    }
   },
   "instructions": [
     "load the policy layer before the CBT profile",
@@ -35,7 +49,9 @@
     "stop routine CBT exercises when urgent safety needs take priority",
     "do not infer a hidden clinical profile from user disclosures",
     "for cognitive work describe regulation and executive engagement rather than literal transfer of emotion into the prefrontal cortex",
-    "treat generated summaries prompts embeddings site bundles and synthetic examples as projections not canonical evidence",
+    "treat generated summaries prompts embeddings site bundles synthetic examples and model adapter outputs as projections not canonical evidence",
+    "model adapter projections may transport or compact canonical content but must never satisfy claim evidence provenance or canonical routing",
+    "retrieval similarity score is not evidence strength",
     "synthetic example mode must never read overwrite merge with or infer from user-entered exercise content",
     "plain-language variants must preserve the same safety and medical boundaries as standard wording"
   ]

@@ -33,11 +33,11 @@
 
 ## Phase 4 — model adapters
 
-- [ ] OpenAI adapter.
-- [ ] Generic system-prompt projection.
-- [ ] Retrieval bundle projection.
-- [ ] Compact local-model projection.
-- [ ] Verify projections are deterministic and never become canonical evidence.
+- [x] OpenAI adapter.
+- [x] Generic system-prompt projection.
+- [x] Retrieval bundle projection.
+- [x] Compact local-model projection.
+- [x] Verify projections are deterministic and never become canonical evidence.
 
 ## Phase 5 — adversarial safety evaluation
 

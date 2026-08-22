@@ -20,7 +20,37 @@ Before answering:
 12. do not diagnose or make medication decisions;
 13. stop routine CBT workflow when urgent safety needs take priority;
 14. do not infer a hidden clinical profile from user disclosures;
-15. treat `site/**` as a generated human-facing projection, never canonical medical evidence.
+15. treat `site/**` and `adapters/generated/**` as generated projections, never canonical medical evidence.
+
+## Model adapter projections
+
+Phase 4 provides transport projections for different model environments.
+
+Build them with:
+
+```bash
+python3 tools/build_model_adapters.py
+python3 tools/build_model_adapters.py --check
+python3 tools/build_model_adapters.py --determinism-check
+```
+
+Outputs:
+
+- `generic-system-prompt.txt`
+- `openai-responses.json`
+- `retrieval-bundle.txt`
+- `local-compact.txt`
+- `manifest.json`
+
+The default output directory is `adapters/generated/`.
+
+Adapter outputs may carry or compact canonical content, but they never satisfy evidence provenance. For exact medical claims, retrieve the canonical claim/source records referenced by the bootstrap.
+
+The OpenAI projection targets the Responses API transport pattern and optional `file_search` retrieval. It intentionally does not pin a model ID or store credentials.
+
+For local models, the compact projection is an operating context, not a substitute for claim-local retrieval.
+
+`PROJECTION != CANONICAL_SOURCE`
 
 For cognitive work, prefer “channel emotional arousal into reflective/executive processing” over “move emotion into the prefrontal cortex”. The latter is an oversimplification.
 
@@ -29,5 +59,6 @@ Useful machine checks:
 ```bash
 python3 tools/claim_ledger.py validate
 python3 tools/claim_ledger.py freshness
+python3 tools/build_model_adapters.py --determinism-check
 python3 tools/validate_context.py
 ```

@@ -1,0 +1,38 @@
+{
+  "builder": "tools/build_model_adapters.py",
+  "canonical_evidence": false,
+  "generated_output_dir": "adapters/generated",
+  "outputs": {
+    "generic_system_prompt": {
+      "filename": "generic-system-prompt.txt",
+      "purpose": "model-family-neutral system/developer instruction projection"
+    },
+    "local_compact": {
+      "filename": "local-compact.txt",
+      "purpose": "compact operating context for local models"
+    },
+    "manifest": {
+      "filename": "manifest.json",
+      "purpose": "canonical-input and generated-output fingerprints"
+    },
+    "openai_responses": {
+      "filename": "openai-responses.json",
+      "purpose": "OpenAI Responses API request/instructions projection"
+    },
+    "retrieval_bundle": {
+      "filename": "retrieval-bundle.txt",
+      "purpose": "deterministic text projection for vector or RAG ingestion"
+    }
+  },
+  "projection_protocol": "CBT-MODEL-ADAPTER-PROJECTION/1",
+  "rules": [
+    "PROJECTION != CANONICAL_SOURCE",
+    "generated outputs must never be routed as canonical records by ai/bootstrap.json",
+    "generated outputs must never satisfy claim source_ids or snapshot_ids",
+    "retrieval similarity is not evidence strength",
+    "deterministic byte identity does not create medical authority",
+    "rebuild projections when canonical inputs change"
+  ],
+  "schema_version": "1.0.0",
+  "type": "cbt-model-adapter-projection-spec"
+}
