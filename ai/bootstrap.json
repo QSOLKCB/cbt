@@ -1,44 +1,18 @@
 {
   "type": "cbt-ai-substrate-bootstrap",
   "protocol": "CBT-EVIDENCE-BOUNDARY/1",
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "snapshot_date": "2026-08-22",
   "visibility": "public",
   "purpose": "smallest-sufficient evidence-bounded context for CBT psychoeducation, low-risk structured self-help, and carefully bounded cognitive-work use",
-  "load_order": [
-    "ai/source-policy.json",
-    "ai/epistemic-contract.json",
-    "ai/medical-claim-boundary.json",
-    "ai/safety-escalation-policy.json",
-    "profiles/cbt-context.json"
-  ],
+  "load_order": ["ai/source-policy.json","ai/epistemic-contract.json","ai/medical-claim-boundary.json","ai/safety-escalation-policy.json","profiles/cbt-context.json"],
   "routed_records": {
-    "cbt_overview": [
-      "profiles/cbt-context.json",
-      "sources/public-sources.json"
-    ],
-    "cbt_self_help": [
-      "profiles/cbt-context.json",
-      "exercises/index.json",
-      "sources/public-sources.json",
-      "ai/safety-escalation-policy.json"
-    ],
-    "medical_claim": [
-      "sources/public-sources.json",
-      "ai/medical-claim-boundary.json"
-    ],
-    "clinical_guideline": [
-      "sources/public-sources.json",
-      "ai/medical-claim-boundary.json"
-    ],
-    "cognitive_work": [
-      "profiles/cognitive-work-addendum.json",
-      "exercises/index.json",
-      "sources/public-sources.json"
-    ],
-    "urgent_safety": [
-      "ai/safety-escalation-policy.json"
-    ]
+    "cbt_overview": ["profiles/cbt-context.json","sources/public-sources.json"],
+    "cbt_self_help": ["profiles/cbt-context.json","profiles/learning-accessibility.json","exercises/index.json","examples/index.json","ai/safety-escalation-policy.json","sources/public-sources.json"],
+    "medical_claim": ["sources/public-sources.json","ai/medical-claim-boundary.json"],
+    "clinical_guideline": ["sources/public-sources.json","ai/medical-claim-boundary.json"],
+    "cognitive_work": ["profiles/cognitive-work-addendum.json","exercises/index.json","sources/public-sources.json"],
+    "urgent_safety": ["ai/safety-escalation-policy.json"]
   },
   "instructions": [
     "load the policy layer before the CBT profile",
@@ -55,6 +29,8 @@
     "stop routine CBT exercises when urgent safety needs take priority",
     "do not infer a hidden clinical profile from user disclosures",
     "for cognitive work describe regulation and executive engagement rather than literal transfer of emotion into the prefrontal cortex",
-    "treat generated summaries prompts embeddings and site bundles as projections not canonical evidence"
+    "treat generated summaries prompts embeddings site bundles and synthetic examples as projections not canonical evidence",
+    "synthetic example mode must never read overwrite merge with or infer from user-entered exercise content",
+    "plain-language variants must preserve the same safety and medical boundaries as standard wording"
   ]
 }

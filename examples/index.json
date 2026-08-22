@@ -1,0 +1,23 @@
+{
+  "type": "cbt-synthetic-example-registry",
+  "schema_version": "1.0.0",
+  "provenance": "All examples are fictional teaching examples written for this repository. They are not user records, case histories, diagnoses, or evidence.",
+  "rules": [
+    "example mode never reads user-entered answers",
+    "example mode never writes into exercise answer fields",
+    "examples must remain low-risk and non-diagnostic",
+    "synthetic examples are teaching projections, not medical evidence"
+  ],
+  "examples": {
+    "thought-record-7": ["A meeting started before I had my notes ready.","Embarrassed and tense, 65/100.","Everyone thinks I am incompetent.","I stumbled over my first sentence.","The meeting continued normally and two people asked useful follow-up questions.","I was flustered at the start, but that does not show what everyone thinks of my competence.","Still uncomfortable, but less certain of the original thought."],
+    "catch-check-change": ["I am going to fail this entire project.","Fact: one test is failing. Prediction: the whole project will fail.","One test is failing; I can inspect that failure before judging the project."],
+    "loop-map": ["A difficult email arrived.","I will make it worse if I reply.","Anxious and tight-chested.","Avoided opening the thread for two days.","The unanswered email felt larger and the original prediction felt more convincing."],
+    "tiny-step": ["Write a report.","It feels too large to start.","Open the document and write three headings.","Whether the structure becomes clearer after the headings exist."],
+    "problem-solving": ["I keep missing a weekly study block.","Move it earlier; shorten it; pair it with an existing routine.","Earlier is quieter but conflicts with breakfast; shorter is easier but covers less; pairing gives a reminder.","Try a 25-minute block after breakfast.","Review after three attempts."],
+    "affect-to-action": ["Frustrated.","One unit test is failing; 'I broke everything' is a judgement.","A failing test identifies a specific mismatch I can inspect.","Run only the failing test and inspect the first assertion.","Use the result to choose the next debugging step."],
+    "worry-time": ["What if I forget something important tomorrow?","Yes, I can make a short checklist.","Write the checklist now, then park the remaining what-ifs for 6:30 pm worry time.","At 6:30 pm, only one worry still seems actionable.","Close the note and return attention to the evening routine."],
+    "graded-task-ladder": ["Clean an overloaded desk.","Put one cup away.","1) cup away; 2) stack papers; 3) bin rubbish; 4) clear one working space; 5) sort the remaining papers.","Clear one working space.","The whole desk did not need to be solved before it became usable."],
+    "behavioural-experiment": ["If I ask one clarifying question, everyone will think I was not listening.","70/100.","Ask one ordinary clarification in a low-stakes team discussion.","The question was answered and the discussion continued.","The prediction did not occur in this instance; one observation does not prove how every group will react."],
+    "setback-plan": ["I start cancelling ordinary plans and staying up much later.","Thoughts become more all-or-nothing; I feel flat; routines slip; sleep changes.","Return to a simple sleep/wake routine, reduce optional load, use the thought record, contact a trusted person.","Trusted friend and usual health professional if symptoms persist or worsen.","Escalating distress, safety concerns, or being unable to manage ordinary needs means routine self-help is no longer enough."]
+  }
+}
