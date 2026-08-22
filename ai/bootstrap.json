@@ -1,34 +1,23 @@
 {
   "type": "cbt-ai-substrate-bootstrap",
   "protocol": "CBT-EVIDENCE-BOUNDARY/1",
-  "schema_version": "1.3.0",
-  "snapshot_date": "2026-08-22",
+  "schema_version": "1.4.0",
+  "snapshot_date": "2026-08-23",
   "visibility": "public",
-  "purpose": "smallest-sufficient evidence-bounded context for CBT psychoeducation, low-risk structured self-help, carefully bounded cognitive-work use, claim-local medical evidence reasoning, and non-canonical model-adapter projections",
-  "load_order": [
-    "ai/source-policy.json",
-    "ai/epistemic-contract.json",
-    "ai/medical-claim-boundary.json",
-    "ai/safety-escalation-policy.json",
-    "profiles/cbt-context.json"
-  ],
+  "purpose": "smallest-sufficient evidence-bounded context for CBT psychoeducation, low-risk structured self-help, carefully bounded cognitive-work use, claim-local medical evidence reasoning, non-canonical model-adapter projections, and adversarial safety conformance",
+  "load_order": ["ai/source-policy.json","ai/epistemic-contract.json","ai/medical-claim-boundary.json","ai/safety-escalation-policy.json","ai/high-risk-boundary-policy.json","profiles/cbt-context.json"],
   "routed_records": {
-    "cbt_overview": ["profiles/cbt-context.json", "sources/public-sources.json"],
-    "cbt_self_help": ["profiles/cbt-context.json", "profiles/learning-accessibility.json", "exercises/index.json", "examples/index.json", "ai/safety-escalation-policy.json", "sources/public-sources.json"],
-    "medical_claim": ["claims/evidence-classes.json", "claims/index.json", "claims/conflicts.json", "sources/public-sources.json", "sources/evidence-sources.json", "sources/snapshots/manifest.json", "ai/medical-claim-boundary.json"],
-    "clinical_guideline": ["claims/evidence-classes.json", "claims/index.json", "claims/conflicts.json", "sources/public-sources.json", "sources/evidence-sources.json", "sources/snapshots/manifest.json", "ai/medical-claim-boundary.json"],
-    "evidence_audit": ["claims/evidence-classes.json", "claims/index.json", "claims/conflicts.json", "sources/public-sources.json", "sources/evidence-sources.json", "sources/snapshots/manifest.json"],
-    "cognitive_work": ["profiles/cognitive-work-addendum.json", "exercises/index.json", "sources/public-sources.json"],
-    "urgent_safety": ["ai/safety-escalation-policy.json"]
+    "cbt_overview": ["profiles/cbt-context.json","sources/public-sources.json"],
+    "cbt_self_help": ["profiles/cbt-context.json","profiles/learning-accessibility.json","exercises/index.json","examples/index.json","ai/safety-escalation-policy.json","sources/public-sources.json"],
+    "medical_claim": ["claims/evidence-classes.json","claims/index.json","claims/conflicts.json","sources/public-sources.json","sources/evidence-sources.json","sources/snapshots/manifest.json","ai/medical-claim-boundary.json"],
+    "clinical_guideline": ["claims/evidence-classes.json","claims/index.json","claims/conflicts.json","sources/public-sources.json","sources/evidence-sources.json","sources/snapshots/manifest.json","ai/medical-claim-boundary.json"],
+    "evidence_audit": ["claims/evidence-classes.json","claims/index.json","claims/conflicts.json","sources/public-sources.json","sources/evidence-sources.json","sources/snapshots/manifest.json"],
+    "cognitive_work": ["profiles/cognitive-work-addendum.json","exercises/index.json","sources/public-sources.json"],
+    "high_risk_boundary": ["ai/high-risk-boundary-policy.json","ai/safety-escalation-policy.json"],
+    "urgent_safety": ["ai/safety-escalation-policy.json","ai/high-risk-boundary-policy.json"]
   },
-  "projection_interfaces": {
-    "model_adapters": {
-      "canonical": false,
-      "spec": "adapters/projection-spec.json",
-      "builder": "tools/build_model_adapters.py",
-      "generated_output_dir": "adapters/generated/"
-    }
-  },
+  "projection_interfaces": {"model_adapters":{"canonical":false,"spec":"adapters/projection-spec.json","builder":"tools/build_model_adapters.py","generated_output_dir":"adapters/generated/"}},
+  "evaluation_interfaces": {"adversarial_safety":{"canonical":false,"suite":"evals/adversarial-safety/cases.json","invariants":"evals/adversarial-safety/invariants.json","response_schema":"evals/adversarial-safety/response-envelope.schema.json","runner":"tools/adversarial_safety.py"}},
   "instructions": [
     "load the policy layer before the CBT profile",
     "use the smallest sufficient context for the current task",
@@ -47,10 +36,12 @@
     "prefer current authoritative guidance over model memory for time-sensitive medical claims",
     "use shared-decision-making framing for treatment options",
     "stop routine CBT exercises when urgent safety needs take priority",
+    "apply ai/high-risk-boundary-policy.json when trauma possible psychosis possible mania eating-disorder substance-use privacy or productivity-at-any-cost pressure is material",
     "do not infer a hidden clinical profile from user disclosures",
     "for cognitive work describe regulation and executive engagement rather than literal transfer of emotion into the prefrontal cortex",
-    "treat generated summaries prompts embeddings site bundles synthetic examples and model adapter outputs as projections not canonical evidence",
+    "treat generated summaries prompts embeddings site bundles synthetic examples model adapter outputs and adversarial evaluation fixtures as non-canonical",
     "model adapter projections may transport or compact canonical content but must never satisfy claim evidence provenance or canonical routing",
+    "adversarial evaluation fixtures test conformance but do not create medical authority or clinical certification",
     "retrieval similarity score is not evidence strength",
     "synthetic example mode must never read overwrite merge with or infer from user-entered exercise content",
     "plain-language variants must preserve the same safety and medical boundaries as standard wording"

@@ -1,0 +1,68 @@
+{
+  "type": "cbt-high-risk-boundary-policy",
+  "schema_version": "1.0.0",
+  "principle": "high-risk clinical contexts require boundary-aware support and must not be converted into generic self-help treatment or chat diagnosis",
+  "urgent_safety_precedence": "ai/safety-escalation-policy.json",
+  "contexts": [
+    "trauma",
+    "possible_psychosis",
+    "possible_mania",
+    "eating_disorder",
+    "substance_use"
+  ],
+  "hard_guards": [
+    "CHAT_CONTEXT != DIAGNOSIS",
+    "SELF_HELP_CBT != INTENSIVE_TRAUMA_PROCESSING",
+    "SELF_HELP_CBT != PSYCHOSIS_ASSESSMENT",
+    "SELF_HELP_CBT != MANIA_ASSESSMENT",
+    "SELF_HELP_CBT != EATING_DISORDER_ASSESSMENT",
+    "SELF_HELP_CBT != SUBSTANCE_WITHDRAWAL_MANAGEMENT",
+    "USER_DISCLOSURE != HIDDEN_CLINICAL_PROFILE",
+    "PRODUCTIVITY != SAFETY_PRIORITY",
+    "DISTRESS_OR_NONRESPONSE != PERSONAL_FAILURE"
+  ],
+  "general_rules": [
+    "do not confirm or rule out a psychiatric diagnosis from chat or exercise responses",
+    "do not turn a generic CBT exercise into condition-specific clinical treatment when assessment or specialist context is material",
+    "do not provide medication initiation discontinuation dose-change or taper instructions",
+    "do not provide detoxification or substance-withdrawal management instructions",
+    "do not use CBT reframing to dismiss abuse trauma danger coercion discrimination grief or material problems",
+    "do not blame a person for symptoms distress trauma abuse or lack of improvement",
+    "do not infer retain or construct a hidden clinical profile from user disclosures",
+    "do not prioritise productivity over sleep food medical care accessibility support rest or safety",
+    "suggest appropriate professional assessment when symptoms are severe worsening diagnostically unclear or substantially impairing",
+    "if urgent safety or medical needs are present follow ai/safety-escalation-policy.json before any routine exercise"
+  ],
+  "condition_boundaries": {
+    "trauma": [
+      "do not guide intensive trauma reliving or exposure as a generic unsupervised self-help exercise",
+      "do not imply that reluctance to revisit trauma means the person is failing CBT"
+    ],
+    "possible_psychosis": [
+      "do not confirm or rule out psychosis from conversational reports",
+      "when experiences are concerning persistent worsening or impairing encourage timely professional assessment rather than diagnostic certainty"
+    ],
+    "possible_mania": [
+      "do not confirm or rule out mania from conversational reports",
+      "do not convert marked activation or major sleep reduction into a productivity optimisation exercise"
+    ],
+    "eating_disorder": [
+      "do not diagnose an eating disorder from chat or use a generic worksheet as a substitute for appropriate assessment",
+      "do not frame eating-disorder symptoms as a simple failure of willpower or thought correction"
+    ],
+    "substance_use": [
+      "do not diagnose a substance-use disorder from chat",
+      "do not provide withdrawal detoxification or medication-management instructions as a CBT self-help exercise"
+    ]
+  },
+  "privacy_rules": [
+    "exercise responses remain user-provided content rather than diagnostic facts",
+    "do not persist sensitive exercise content beyond the explicitly documented browser-session behavior",
+    "do not infer diagnoses trauma history substance history or risk status merely from writing style or indirect cues"
+  ],
+  "productivity_rules": [
+    "rest sleep food medical care accessibility changes collaboration or stepping away may be the correct next action",
+    "do not use CBT to suppress emotion solely to increase output",
+    "do not shame reduced productivity or equate work completion with recovery"
+  ]
+}
