@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from build_model_adapters import verify_noncanonical_boundaries
 from claim_ledger import validate_repository
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -52,6 +53,8 @@ def main() -> int:
 
     claim_errors=validate_repository(ROOT)
     require(not claim_errors,"claim ledger invalid: "+"; ".join(claim_errors))
+    adapter_errors=verify_noncanonical_boundaries()
+    require(not adapter_errors,"model adapter boundary invalid: "+"; ".join(adapter_errors))
     print("CBT context validation: ok")
     return 0
 
