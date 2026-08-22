@@ -1,0 +1,24 @@
+{
+  "type": "cbt-learning-accessibility-profile",
+  "schema_version": "1.0.0",
+  "principles": [
+    "plain language must preserve the same medical and safety boundaries as the standard wording",
+    "shorter wording must not become stronger medical advice",
+    "do not rely on colour alone to communicate warnings or state",
+    "all exercise controls must remain keyboard reachable",
+    "large-text mode must not hide safety, source, mechanism, or limitation content",
+    "print mode must default to a blank worksheet and must not print user-entered answers"
+  ],
+  "plain_language_exercises": {
+    "thought-record-7": {"purpose":"Slow a difficult moment down and look at the thought from more than one angle.","prompts":["What happened?","What did you feel in your body or emotions?","What thought popped up?","What facts support that thought?","What facts do not fit it?","What is a more balanced thought?","How do you feel now?"]},
+    "catch-check-change": {"purpose":"Notice a fast thought, check it, then make it more balanced if the facts allow.","prompts":["Catch: what is the thought?","Check: what is fact and what is a prediction?","Change: what is a fairer version you can believe?"]},
+    "loop-map": {"purpose":"See how a situation, thought, feeling and action can feed each other.","prompts":["What happened?","What did you think?","What did you feel?","What did you do or avoid?","What happened next?"]},
+    "tiny-step": {"purpose":"Make a stuck task small enough to try one safe next step.","prompts":["What are you putting off?","What feeling or prediction comes with it?","What could you do in five minutes?","What will you notice after that one step?"]},
+    "problem-solving": {"purpose":"Turn a broad problem into one practical next decision.","prompts":["What is the problem in concrete words?","What are some possible actions?","What are the likely good and bad parts of each?","Which safe action will you try?","When will you review what happened?"]},
+    "affect-to-action": {"purpose":"Make enough thinking space to choose the next work step without pretending the emotion is gone.","prompts":["Name the feeling or state.","What is the actual work problem?","What is a balanced way to describe it?","What is the smallest useful next step?","Try it, then check what happened."]},
+    "worry-time": {"purpose":"Give repeated worries a planned time instead of letting them take over the whole day.","prompts":["Write the worry in one sentence.","Can you do something practical about it now?","If yes, what is one action? If no, park it for your planned worry time.","At worry time, what still needs attention?","What will help you return to the present afterwards?"]},
+    "graded-task-ladder": {"purpose":"Break an overwhelming task into smaller steps and start with a manageable one.","prompts":["What task feels too big?","What would a very easy first step look like?","List 3 to 5 steps from easiest to harder.","Which step is safe and manageable today?","What did you learn after trying it?"]},
+    "behavioural-experiment": {"purpose":"Test a low-stakes prediction with a safe real-world observation.","prompts":["What do you predict will happen?","How strongly do you believe it?","What safe, ordinary action could test the prediction?","What happened?","What does the result suggest, including anything still uncertain?"]},
+    "setback-plan": {"purpose":"Notice early warning signs and decide what helps before a setback grows.","prompts":["What are your early warning signs?","What thoughts, feelings, behaviours or body signs tend to appear?","What has helped before?","Who or what support can you use?","What will tell you it is time to seek more help?"]}
+  }
+}

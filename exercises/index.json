@@ -1,129 +1,17 @@
 {
   "type": "cbt-educational-exercise-registry",
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "disclaimer": "Educational self-help demonstrations of CBT principles. They are not diagnosis, emergency care, or a substitute for appropriate professional treatment.",
   "exercises": [
-    {
-      "id": "thought-record-7",
-      "title": "The 7-Step Thought Record",
-      "level": "intro",
-      "time": "10–15 min",
-      "purpose": "See how a situation, interpretation, emotion and response can be separated and reconsidered.",
-      "prompts": [
-        "Situation: what happened? Keep this as observable as possible.",
-        "Feelings/body: what did you notice, and how intense was it?",
-        "Automatic thought: what went through your mind?",
-        "Evidence for: what facts genuinely support that thought?",
-        "Evidence against: what facts do not fit it, or what is missing?",
-        "Balanced thought: what interpretation fits the full evidence without forced positivity?",
-        "Check again: what changed in emotion, body or intended action?"
-      ],
-      "mechanism": "The exercise slows an automatic interpretation into inspectable parts, then asks whether the first thought explains all the evidence. CBT is not asking you to call a bad situation good; it is testing whether your interpretation is complete and useful.",
-      "not_established": "A calmer feeling does not prove the balanced thought is true, and no answer diagnoses a cognitive distortion.",
-      "pause_or_support": "Pause if recording the situation makes distress feel unmanageable, if you feel unsafe, or if the situation involves immediate danger. Seek appropriate human or professional support rather than forcing the worksheet to completion.",
-      "source_ids": [
-        "uk.nhs.thought-record"
-      ]
-    },
-    {
-      "id": "catch-check-change",
-      "title": "Catch → Check → Change",
-      "level": "intro",
-      "time": "3–8 min",
-      "purpose": "Practise cognitive flexibility when an unhelpful thought arrives quickly.",
-      "prompts": [
-        "Catch it: write the thought in one sentence.",
-        "Check it: what is fact, what is prediction, and what other explanations fit?",
-        "Change it: write a neutral or more balanced version you can actually believe."
-      ],
-      "mechanism": "This makes the thought an object of examination rather than an instruction that must be obeyed. The goal is flexible thinking, not cheerful thinking.",
-      "not_established": "Some difficult thoughts are accurate. Reframing must not erase danger, grief, discrimination, abuse or material problems.",
-      "pause_or_support": "Do not use reframing to talk yourself out of recognising danger, abuse, coercion, discrimination or urgent needs. Pause and seek appropriate support when safety or a serious real-world problem needs action first.",
-      "source_ids": [
-        "uk.nhs.every-mind-matters-cbt"
-      ]
-    },
-    {
-      "id": "loop-map",
-      "title": "Map the Loop",
-      "level": "intro",
-      "time": "5–10 min",
-      "purpose": "See how thoughts, feelings and actions can reinforce one another.",
-      "prompts": [
-        "Name the situation.",
-        "What did you think or predict?",
-        "What emotion or body response followed?",
-        "What did you do or avoid doing?",
-        "What happened next that may have strengthened or weakened the original thought?"
-      ],
-      "mechanism": "CBT often looks for maintaining loops. If avoidance reduces anxiety for five minutes but makes the feared task larger tomorrow, the short-term relief may be helping maintain the longer-term problem.",
-      "not_established": "A loop map is a working formulation, not a diagnosis or proof of cause.",
-      "pause_or_support": "Pause if mapping the loop becomes overwhelming, starts to feel like self-blame, or brings up an unsafe situation that needs action rather than analysis. Support from a trusted person or qualified professional may be more appropriate than continuing alone.",
-      "source_ids": [
-        "uk.nhs.cbt",
-        "uk.nhs.every-mind-matters-cbt"
-      ]
-    },
-    {
-      "id": "tiny-step",
-      "title": "The Tiny Next Step",
-      "level": "intro",
-      "time": "2–5 min",
-      "purpose": "Turn a vague avoided task into one small behaviour that creates momentum or information.",
-      "prompts": [
-        "What are you avoiding or putting off?",
-        "What feeling or prediction shows up around it?",
-        "What is a step small enough to begin in five minutes?",
-        "What will you observe after doing only that step?"
-      ],
-      "mechanism": "Changing behaviour can alter the feedback loop. A small action can produce new evidence and reduce the need to solve the entire future before starting.",
-      "not_established": "Starting is not always the right choice. Rest, help, accessibility changes or stopping may be more appropriate.",
-      "pause_or_support": "Do not choose a next step that is unsafe, medically inappropriate, beyond your capacity, or likely to worsen an urgent problem. Rest, assistance, accessibility changes or professional support can be the correct next action.",
-      "source_ids": [
-        "uk.nhs.cbt",
-        "uk.nhs.every-mind-matters-cbt"
-      ]
-    },
-    {
-      "id": "problem-solving",
-      "title": "Problem-Solving Grid",
-      "level": "intro",
-      "time": "10–20 min",
-      "purpose": "Separate a solvable problem from worry about possibilities you cannot currently control.",
-      "prompts": [
-        "Define the problem in concrete terms.",
-        "List possible actions without judging them yet.",
-        "For each action, note likely benefits, costs and obstacles.",
-        "Choose one proportionate next action.",
-        "Set a review point: what result will tell you what to do next?"
-      ],
-      "mechanism": "Structure reduces the number of decisions being made at once and turns broad worry into testable action where action is possible.",
-      "not_established": "Not every problem is personally solvable, and structural or interpersonal problems should not be reframed as individual thinking errors.",
-      "pause_or_support": "Pause if the problem involves immediate safety, serious medical or legal stakes, abuse, coercion, or consequences that need specialist advice. A worksheet should not replace appropriate expert or interpersonal support.",
-      "source_ids": [
-        "uk.nhs.every-mind-matters-cbt"
-      ]
-    },
-    {
-      "id": "affect-to-action",
-      "title": "Affect → Action for Cognitive Work",
-      "level": "addendum",
-      "time": "5–12 min",
-      "purpose": "Use CBT-style regulation to re-engage coding, study, research, debugging or writing without pretending the emotion is gone.",
-      "prompts": [
-        "Label: what emotion/state is present?",
-        "Separate: what is the observable work problem, and what is the prediction or self-judgement?",
-        "Reappraise: what balanced interpretation preserves the facts?",
-        "Decompose: what is the smallest action that produces information?",
-        "Test: do it, then review the result before choosing the next action."
-      ],
-      "mechanism": "Affect labelling and cognitive reappraisal have been associated with prefrontal/control-system engagement and changes in emotional responding in laboratory neuroimaging research. The practical aim is to make enough reflective space to choose a next action, not to 'move emotion into the prefrontal cortex'.",
-      "not_established": "This does not guarantee better productivity, prove a particular neural state, establish that laboratory findings generalise to coding or study performance, or mean distress should be worked through instead of rested, treated or supported.",
-      "pause_or_support": "Stop the work exercise if distress is escalating, concentration is becoming unsafe, basic needs are being neglected, or continuing would mean pushing through a situation that needs rest, medical care, accessibility support or human help instead.",
-      "source_ids": [
-        "pubmed.lieberman.2007.affect-labeling",
-        "pubmed.buhle.2014.reappraisal-meta"
-      ]
-    }
+    {"id":"thought-record-7","title":"The 7-Step Thought Record","level":"intro","time":"10–15 min","purpose":"See how a situation, interpretation, emotion and response can be separated and reconsidered.","prompts":["Situation: what happened? Keep this as observable as possible.","Feelings/body: what did you notice, and how intense was it?","Automatic thought: what went through your mind?","Evidence for: what facts genuinely support that thought?","Evidence against: what facts do not fit it, or what is missing?","Balanced thought: what interpretation fits the full evidence without forced positivity?","Check again: what changed in emotion, body or intended action?"],"mechanism":"The exercise slows an automatic interpretation into inspectable parts, then asks whether the first thought explains all the evidence. CBT is not asking you to call a bad situation good; it is testing whether your interpretation is complete and useful.","not_established":"A calmer feeling does not prove the balanced thought is true, and no answer diagnoses a cognitive distortion.","pause_or_support":"Pause if recording the situation makes distress feel unmanageable, if you feel unsafe, or if the situation involves immediate danger. Seek appropriate human or professional support rather than forcing the worksheet to completion.","source_ids":["uk.nhs.thought-record"]},
+    {"id":"catch-check-change","title":"Catch → Check → Change","level":"intro","time":"3–8 min","purpose":"Practise cognitive flexibility when an unhelpful thought arrives quickly.","prompts":["Catch it: write the thought in one sentence.","Check it: what is fact, what is prediction, and what other explanations fit?","Change it: write a neutral or more balanced version you can actually believe."],"mechanism":"This makes the thought an object of examination rather than an instruction that must be obeyed. The goal is flexible thinking, not cheerful thinking.","not_established":"Some difficult thoughts are accurate. Reframing must not erase danger, grief, discrimination, abuse or material problems.","pause_or_support":"Do not use reframing to talk yourself out of recognising danger, abuse, coercion, discrimination or urgent needs. Pause and seek appropriate support when safety or a serious real-world problem needs action first.","source_ids":["uk.nhs.every-mind-matters-cbt"]},
+    {"id":"loop-map","title":"Map the Loop","level":"intro","time":"5–10 min","purpose":"See how thoughts, feelings and actions can reinforce one another.","prompts":["Name the situation.","What did you think or predict?","What emotion or body response followed?","What did you do or avoid doing?","What happened next that may have strengthened or weakened the original thought?"],"mechanism":"CBT often looks for maintaining loops. If avoidance reduces anxiety for five minutes but makes the feared task larger tomorrow, the short-term relief may be helping maintain the longer-term problem.","not_established":"A loop map is a working formulation, not a diagnosis or proof of cause.","pause_or_support":"Pause if mapping the loop becomes overwhelming, starts to feel like self-blame, or brings up an unsafe situation that needs action rather than analysis. Support from a trusted person or qualified professional may be more appropriate than continuing alone.","source_ids":["uk.nhs.cbt","uk.nhs.every-mind-matters-cbt"]},
+    {"id":"tiny-step","title":"The Tiny Next Step","level":"intro","time":"2–5 min","purpose":"Turn a vague avoided task into one small behaviour that creates momentum or information.","prompts":["What are you avoiding or putting off?","What feeling or prediction shows up around it?","What is a step small enough to begin in five minutes?","What will you observe after doing only that step?"],"mechanism":"Changing behaviour can alter the feedback loop. A small action can produce new evidence and reduce the need to solve the entire future before starting.","not_established":"Starting is not always the right choice. Rest, help, accessibility changes or stopping may be more appropriate.","pause_or_support":"Do not choose a next step that is unsafe, medically inappropriate, beyond your capacity, or likely to worsen an urgent problem. Rest, assistance, accessibility changes or professional support can be the correct next action.","source_ids":["uk.nhs.cbt","uk.nhs.every-mind-matters-cbt"]},
+    {"id":"problem-solving","title":"Problem-Solving Grid","level":"intro","time":"10–20 min","purpose":"Separate a solvable problem from worry about possibilities you cannot currently control.","prompts":["Define the problem in concrete terms.","List possible actions without judging them yet.","For each action, note likely benefits, costs and obstacles.","Choose one proportionate next action.","Set a review point: what result will tell you what to do next?"],"mechanism":"Structure reduces the number of decisions being made at once and turns broad worry into testable action where action is possible.","not_established":"Not every problem is personally solvable, and structural or interpersonal problems should not be reframed as individual thinking errors.","pause_or_support":"Pause if the problem involves immediate safety, serious medical or legal stakes, abuse, coercion, or consequences that need specialist advice. A worksheet should not replace appropriate expert or interpersonal support.","source_ids":["uk.nhs.every-mind-matters-cbt"]},
+    {"id":"affect-to-action","title":"Affect → Action for Cognitive Work","level":"addendum","time":"5–12 min","purpose":"Use CBT-style regulation to re-engage coding, study, research, debugging or writing without pretending the emotion is gone.","prompts":["Label: what emotion/state is present?","Separate: what is the observable work problem, and what is the prediction or self-judgement?","Reappraise: what balanced interpretation preserves the facts?","Decompose: what is the smallest action that produces information?","Test: do it, then review the result before choosing the next action."],"mechanism":"Affect labelling and cognitive reappraisal have been associated with prefrontal/control-system engagement and changes in emotional responding in laboratory neuroimaging research. The practical aim is to make enough reflective space to choose a next action, not to 'move emotion into the prefrontal cortex'.","not_established":"This does not guarantee better productivity, prove a particular neural state, establish that laboratory findings generalise to coding or study performance, or mean distress should be worked through instead of rested, treated or supported.","pause_or_support":"Stop the work exercise if distress is escalating, concentration is becoming unsafe, basic needs are being neglected, or continuing would mean pushing through a situation that needs rest, medical care, accessibility support or human help instead.","source_ids":["pubmed.lieberman.2007.affect-labeling","pubmed.buhle.2014.reappraisal-meta"]},
+    {"id":"worry-time","title":"Worry Time: Park, Return, Decide","level":"phase2","time":"10–20 min planned window","purpose":"Contain repeated worry by recording it, separating actionable from non-actionable concerns, and returning to it at a planned time rather than wrestling with it continuously.","prompts":["Write the worry briefly. What exactly is your mind predicting or trying to solve?","Is there a practical action you can take now? If yes, name one proportionate action.","If there is no useful action now, choose a specific later worry-time window and park the note until then.","At worry time, review the note: is it still relevant, actionable, or mainly a hypothetical what-if?","When the window ends, what ordinary present-moment activity will you return to?"],"mechanism":"A planned worry period can separate problem-solving from repetitive mental rehearsal. The exercise practises postponing engagement with non-urgent worry without claiming the worry is false or demanding that it disappear.","not_established":"Being able to postpone a worry does not prove that an anxiety disorder is present or absent, and a worry that identifies a real problem may still require practical action.","pause_or_support":"Do not postpone urgent safety, medical, safeguarding, financial, legal or other time-critical action until worry time. If worry is overwhelming, persistent, or significantly disrupting daily life, appropriate human or professional support may be more useful than repeating the exercise alone.","source_ids":["uk.nhs.tackling-worries","uk.nice.gad.cg113"]},
+    {"id":"graded-task-ladder","title":"Graded Task Ladder","level":"phase2","time":"10–20 min planning + practice","purpose":"Break an overwhelming or avoided ordinary task into smaller steps, starting with a manageable action rather than treating the whole task as one unit.","prompts":["Name the ordinary task or activity that feels too large right now.","What is the smallest safe step that would count as beginning?","List 3–5 steps from easiest to harder. Keep each step concrete and observable.","Choose the easiest useful step that fits your current energy, access needs and circumstances.","After trying it, what did you learn about the task, your prediction, or what support you need next?"],"mechanism":"Grading reduces an all-or-nothing task into behaviours that can be attempted and reviewed. This can create information, structure and a sense of progress without requiring the person to solve the whole task at once.","not_established":"Completing a step does not diagnose avoidance, depression or anxiety, and difficulty completing a step is not evidence of laziness, failure or lack of motivation.","pause_or_support":"Do not create a ladder for dangerous activities, unsupervised clinical exposure, activities restricted by medical advice, or situations involving abuse or coercion. Accessibility changes, assistance, rest, or stopping can be the correct outcome.","source_ids":["uk.nhs.todo-list","uk.nhs.cbt"]},
+    {"id":"behavioural-experiment","title":"Behavioural Experiment: Test a Prediction","level":"phase2","time":"10–30 min","purpose":"Turn a low-stakes belief or prediction into a safe observation that can provide new evidence.","prompts":["Write one specific prediction that could be observed. Avoid global statements about your worth or identity.","How strongly do you believe the prediction before the experiment?","Design the smallest safe, ordinary action that could provide information. What result would count as relevant evidence?","Carry out the action only if it remains low-risk and appropriate. What actually happened?","Compare prediction and observation. What changed, what did not, and what remains uncertain?"],"mechanism":"Behavioural experiments test a prediction against experience rather than treating either fear or reassurance as proof. The useful output is evidence that can update a working belief, including when the prediction is partly or fully supported.","not_established":"One experiment does not prove a general rule, establish a diagnosis, or show that a feared outcome can never happen. Professional CBT behavioural experiments may be more complex and are not recreated by this worksheet.","pause_or_support":"Use this only for safe, ordinary, low-stakes predictions. Do not use it for self-directed trauma work, dangerous exposure, medication or health experiments, substance use, driving risk, legal or financial jeopardy, confrontation with an abusive person, or any experiment where a wrong prediction could cause serious harm. Seek qualified support for higher-risk work.","source_ids":["uk.nhs.cbt","uk.nhs.learninghub.behavioural-experiments"]},
+    {"id":"setback-plan","title":"Staying on Top: Setback Plan","level":"phase2","time":"15–25 min","purpose":"Identify personal warning signs, useful skills and support options so a future setback can be met with a prepared plan rather than treated as being back at square one.","prompts":["What early warning signs tend to show up in thoughts, emotions, behaviour, body or routine?","What situations or pressures commonly make things harder for you?","Which skills, routines, accessibility changes or supports have genuinely helped before?","Who or what can you contact if self-help is not enough?","What specific signs will mean it is time to seek more or different support rather than simply trying harder?"],"mechanism":"A setback plan turns previous learning into prospective cues and actions. It treats recurrence of difficulty as information to respond to, not proof that earlier progress was fake or that the person has failed.","not_established":"A self-help plan does not prevent relapse, guarantee continued wellbeing, replace a clinician-agreed relapse plan, or determine when treatment should start, stop or change.","pause_or_support":"If warning signs include urgent safety concerns, severe deterioration, inability to meet basic needs, or other signs that routine self-management is no longer sufficient, seek appropriate human or professional support rather than relying on this plan alone.","source_ids":["uk.nhs.staying-on-top","uk.nice.depression.ng222"]}
   ]
 }

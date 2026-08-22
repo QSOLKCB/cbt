@@ -15,13 +15,13 @@
 
 ## Phase 2 — exercise expansion
 
-- [ ] Add worry-time exercise.
-- [ ] Add graded task assignment.
-- [ ] Add behavioural experiment planner.
-- [ ] Add relapse/setback planning.
-- [ ] Add accessibility and plain-language variants.
-- [ ] Add print-friendly worksheet export.
-- [ ] Add optional “example mode” that never uses user-entered content.
+- [x] Add worry-time exercise.
+- [x] Add graded task assignment.
+- [x] Add behavioural experiment planner.
+- [x] Add relapse/setback planning.
+- [x] Add accessibility and plain-language variants.
+- [x] Add print-friendly worksheet export.
+- [x] Add optional “example mode” that never uses user-entered content.
 
 ## Phase 3 — claim ledger
 

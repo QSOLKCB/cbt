@@ -6,18 +6,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 INPUTS = [
-    ROOT / "profiles" / "cbt-context.json",
-    ROOT / "profiles" / "cognitive-work-addendum.json",
-    ROOT / "exercises" / "index.json",
-    ROOT / "sources" / "public-sources.json",
-    ROOT / "ai" / "medical-claim-boundary.json",
+    ("cbt_context", ROOT / "profiles" / "cbt-context.json"),
+    ("cognitive_work_addendum", ROOT / "profiles" / "cognitive-work-addendum.json"),
+    ("learning_accessibility", ROOT / "profiles" / "learning-accessibility.json"),
+    ("exercises", ROOT / "exercises" / "index.json"),
+    ("examples", ROOT / "examples" / "index.json"),
+    ("public_sources", ROOT / "sources" / "public-sources.json"),
+    ("medical_claim_boundary", ROOT / "ai" / "medical-claim-boundary.json"),
 ]
 OUTPUT = ROOT / "site" / "data" / "context.bundle.js"
 
 def build() -> str:
-    payload = {}
-    for path in INPUTS:
-        payload[path.stem.replace("-", "_")] = json.loads(path.read_text(encoding="utf-8"))
+    payload = {key: json.loads(path.read_text(encoding="utf-8")) for key, path in INPUTS}
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
     return "window.CBT95_CONTEXT=" + canonical + ";\n"
 
