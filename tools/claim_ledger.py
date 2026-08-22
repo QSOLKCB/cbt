@@ -10,12 +10,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+
 def load(root: Path, rel: str):
     return json.loads((root / rel).read_text(encoding="utf-8"))
+
 
 def canonical_sha256(value) -> str:
     payload = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
     return "sha256:" + hashlib.sha256(payload).hexdigest()
+
 
 def _contains_forbidden_snapshot_key(value) -> bool:
     forbidden = {"full_text", "article_text", "body", "content", "transcript"}
@@ -25,6 +28,7 @@ def _contains_forbidden_snapshot_key(value) -> bool:
         return any(_contains_forbidden_snapshot_key(v) for v in value)
     return False
 
+
 def validate_repository(root: Path = ROOT) -> list[str]:
     errors: list[str] = []
     ledger = load(root, "claims/index.json")
@@ -33,15 +37,21 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     snapshots = load(root, "sources/snapshots/manifest.json")
     public_sources = load(root, "sources/public-sources.json")
     evidence_sources = load(root, "sources/evidence-sources.json")
+    source_policy = load(root, "ai/source-policy.json")
 
     class_ids = set(classes["classes"])
     if not classes.get("no_global_rank"):
         errors.append("evidence classes must not define a global rank")
 
+    allowed_source_classes = set(source_policy.get("allowed_source_classes", []))
     source_records = public_sources["sources"] + evidence_sources["sources"]
     source_ids = {s["id"] for s in source_records}
+    source_map = {s["id"]: s for s in source_records}
     if len(source_ids) != len(source_records):
         errors.append("duplicate source id across source registries")
+    for source in source_records:
+        if source.get("class") not in allowed_source_classes:
+            errors.append(f"{source['id']} has unregistered source class {source.get('class')}")
 
     snapshot_map = {s["id"]: s for s in snapshots["records"]}
     if len(snapshot_map) != len(snapshots["records"]):
@@ -60,8 +70,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             expires = date.fromisoformat(snap["verification_expires_on"])
             if expires < verified:
                 errors.append(f"{snap['id']} expires before verification")
-        except ValueError:
-            errors.append(f"{snap['id']} has invalid verification date")
+        except (ValueError, KeyError):
+            errors.append(f"{snap.get('id')} has invalid verification date")
 
     claim_map = {}
     required = (
@@ -79,15 +89,27 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 errors.append(f"{cid} missing {field}")
         if claim.get("evidence_class") not in class_ids:
             errors.append(f"{cid} has unknown evidence class {claim.get('evidence_class')}")
-        for source_id in claim.get("source_ids", []):
+
+        claim_source_ids = set(claim.get("source_ids", []))
+        for source_id in claim_source_ids:
             if source_id not in source_ids:
                 errors.append(f"{cid} references unknown source {source_id}")
+
+        represented_source_ids: set[str] = set()
+        claim_snapshots = []
         for snapshot_id in claim.get("snapshot_ids", []):
             snap = snapshot_map.get(snapshot_id)
             if not snap:
                 errors.append(f"{cid} references unknown snapshot {snapshot_id}")
-            elif snap["source_id"] not in claim.get("source_ids", []):
+                continue
+            claim_snapshots.append(snap)
+            represented_source_ids.add(snap["source_id"])
+            if snap["source_id"] not in claim_source_ids:
                 errors.append(f"{cid} snapshot {snapshot_id} does not match a claim source")
+        missing_snapshot_sources = sorted(claim_source_ids - represented_source_ids)
+        if missing_snapshot_sources:
+            errors.append(f"{cid} missing snapshots for claim sources: {', '.join(missing_snapshot_sources)}")
+
         try:
             reviewed = date.fromisoformat(claim["last_reviewed"])
             due = date.fromisoformat(claim["review_due"])
@@ -96,8 +118,27 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         except (ValueError, KeyError):
             errors.append(f"{cid} has invalid review dates")
 
-        if claim.get("evidence_class") == "archived_guideline" and claim.get("status") != "historical_reference_only":
-            errors.append(f"{cid} archived guideline must remain historical_reference_only")
+        authority_statuses = {
+            source_map[source_id].get("authority_status")
+            for source_id in claim_source_ids
+            if source_id in source_map
+        }
+        authority_statuses.update(
+            snap.get("observed_metadata", {}).get("authority_status")
+            for snap in claim_snapshots
+        )
+        authority_statuses.discard(None)
+        derives_historical_only = "reference_only" in authority_statuses
+        if derives_historical_only:
+            if claim.get("status") != "historical_reference_only":
+                errors.append(f"{cid} uses reference_only evidence and must remain historical_reference_only")
+            if claim.get("evidence_class") != "archived_guideline":
+                errors.append(f"{cid} uses reference_only guidance and must use archived_guideline evidence class")
+        if claim.get("evidence_class") == "archived_guideline":
+            if claim.get("status") != "historical_reference_only":
+                errors.append(f"{cid} archived guideline must remain historical_reference_only")
+            if not derives_historical_only:
+                errors.append(f"{cid} archived guideline lacks reference_only source authority metadata")
 
     for bundle in conflicts["bundles"]:
         if len(bundle.get("claim_ids", [])) < 2:
@@ -114,26 +155,59 @@ def validate_repository(root: Path = ROOT) -> list[str]:
 
     return errors
 
+
 def freshness_report(root: Path = ROOT, as_of: date | None = None):
     if as_of is None:
         as_of = date.today()
     snapshots = load(root, "sources/snapshots/manifest.json")
+    ledger = load(root, "claims/index.json")
     rows = []
+
     for snap in sorted(snapshots["records"], key=lambda x: x["id"]):
+        verified = date.fromisoformat(snap["verified_on"])
         due = date.fromisoformat(snap["verification_expires_on"])
         authority = snap["observed_metadata"].get("authority_status", "unspecified")
-        status = "review_due" if as_of > due else "current_verification"
-        if authority == "reference_only":
-            status = "historical_reference_only" if as_of <= due else "historical_reference_review_due"
+        if as_of < verified:
+            status = "not_yet_verified"
+        elif authority == "reference_only":
+            status = "historical_reference_review_due" if as_of > due else "historical_reference_only"
+        else:
+            status = "review_due" if as_of > due else "current_verification"
         rows.append({
+            "record_type": "source_snapshot",
             "snapshot_id": snap["id"],
             "source_id": snap["source_id"],
             "authority_status": authority,
             "verified_on": snap["verified_on"],
-            "verification_expires_on": snap["verification_expires_on"],
+            "review_due_on": snap["verification_expires_on"],
             "freshness_status": status,
         })
+
+    for claim in sorted(ledger["claims"], key=lambda x: x["id"]):
+        reviewed = date.fromisoformat(claim["last_reviewed"])
+        due = date.fromisoformat(claim["review_due"])
+        if as_of < reviewed:
+            status = "not_yet_reviewed"
+        elif claim.get("status") == "historical_reference_only":
+            status = "historical_claim_review_due" if as_of > due else "historical_claim_review_current"
+        else:
+            status = "claim_review_due" if as_of > due else "claim_review_current"
+        rows.append({
+            "record_type": "claim",
+            "claim_id": claim["id"],
+            "claim_status": claim["status"],
+            "last_reviewed": claim["last_reviewed"],
+            "review_due_on": claim["review_due"],
+            "freshness_status": status,
+        })
+
     return rows
+
+
+def _freshness_blocks(row: dict) -> bool:
+    status = row["freshness_status"]
+    return status.endswith("review_due") or status in {"not_yet_verified", "not_yet_reviewed"}
+
 
 def main() -> int:
     parser = argparse.ArgumentParser()
@@ -156,14 +230,18 @@ def main() -> int:
 
     as_of = date.fromisoformat(args.as_of) if args.as_of else date.today()
     rows = freshness_report(as_of=as_of)
-    stale = [r for r in rows if r["freshness_status"].endswith("review_due")]
+    blocking = [r for r in rows if _freshness_blocks(r)]
     if args.json:
         print(json.dumps({"as_of": as_of.isoformat(), "records": rows}, sort_keys=True, separators=(",", ":")))
     else:
         print(f"CBT claim ledger freshness as of {as_of.isoformat()}")
         for row in rows:
-            print(f"{row['freshness_status']}: {row['source_id']} (review by {row['verification_expires_on']})")
-    return 1 if args.fail_on_stale and stale else 0
+            if row["record_type"] == "source_snapshot":
+                print(f"{row['freshness_status']}: source {row['source_id']} (review by {row['review_due_on']})")
+            else:
+                print(f"{row['freshness_status']}: claim {row['claim_id']} (review by {row['review_due_on']})")
+    return 1 if args.fail_on_stale and blocking else 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
