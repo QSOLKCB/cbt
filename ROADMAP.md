@@ -52,9 +52,9 @@
 
 ## Phase 6 — Encarta 95 polish
 
-- [ ] Search index and glossary.
-- [ ] Source explorer.
-- [ ] Exercise favourites.
-- [ ] Offline PWA packaging.
-- [ ] Keyboard-first navigation.
-- [ ] “How this maps to the CBT model” interactive diagram.
+- [x] Search index and glossary.
+- [x] Source explorer.
+- [x] Exercise favourites.
+- [x] Offline PWA packaging.
+- [x] Keyboard-first navigation.
+- [x] “How this maps to the CBT model” interactive diagram.
