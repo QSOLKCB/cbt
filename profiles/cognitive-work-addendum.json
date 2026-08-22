@@ -17,10 +17,11 @@
     "use CBT to suppress emotion",
     "turn distress into productivity"
   ],
+  "evidence_scope": "The neuroscience cited here is laboratory human neuroimaging evidence about affect labelling and cognitive reappraisal. It does not directly test coding, academic study, debugging, writing performance, clinical outcomes, or this five-step workflow as a package.",
   "mechanism_summary": [
-    "affect labelling has been associated in neuroimaging studies with increased right ventrolateral prefrontal activity and reduced amygdala response to negative stimuli",
-    "cognitive reappraisal recruits frontal and parietal control systems involved in changing the interpretation and affective impact of stimuli",
-    "these findings support a possible regulation mechanism but do not prove that a specific exercise will improve coding academic performance or provide any productivity guarantee"
+    "in a 2007 fMRI study of 30 participants aged 18–36 performing affect-labelling tasks on emotional facial stimuli, affect labelling was associated with increased right ventrolateral prefrontal activity and reduced amygdala/limbic responding relative to comparison conditions",
+    "a 2014 meta-analysis of 48 human neuroimaging studies, mostly involving downregulation of negative affect, found consistent recruitment of cognitive-control and lateral temporal regions with modulation of bilateral amygdala activity during reappraisal",
+    "these laboratory findings support possible regulation mechanisms but do not establish that the same neural pattern occurs during coding or study, that the cited samples represent every population, or that a specific exercise will improve performance or provide any productivity guarantee"
   ],
   "workflow": [
     {
@@ -53,7 +54,8 @@
     "rest sleep food medical care accessibility changes collaboration or stepping away may be the correct next action",
     "do not use this framework to moralise productivity",
     "persistent or severe distress deserves appropriate support even if work can still be completed",
-    "mechanistic neuroscience claims remain evidence_supported rather than guaranteed individual effects"
+    "mechanistic neuroscience claims remain evidence_supported rather than guaranteed individual effects",
+    "do not generalise laboratory neuroimaging findings into claims about real-world cognitive-work performance without direct evidence"
   ],
   "source_ids": [
     "pubmed.lieberman.2007.affect-labeling",
