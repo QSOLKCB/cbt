@@ -27,8 +27,15 @@ Maintain a public, evidence-bounded CBT teaching resource and AI substrate.
 - `USER_DISCLOSURE != HIDDEN_CLINICAL_PROFILE`
 - `PRODUCTIVITY != SAFETY_PRIORITY`
 - `DISTRESS_OR_NONRESPONSE != PERSONAL_FAILURE`
+- `SEARCH_RANK != EVIDENCE_STRENGTH`
+- `SEARCH_RESULT != DE-SCOPED_MEDICAL_CLAIM`
+- `LATEST_SOURCE_SNAPSHOT != CLAIM_BOUND_SNAPSHOT`
+- `FAVOURITE_ID != CLINICAL_PROFILE`
+- `OFFLINE_CACHE != CURRENT_GUIDANCE`
+- `PWA_CACHE != USER_EXERCISE_STORAGE`
+- `INTERACTIVE_DIAGRAM != NEW_CLINICAL_MODEL`
 
-Do not weaken these to make an answer smoother.
+Do not weaken these to make an answer or UI smoother.
 
 ## Clinical language rule
 
@@ -62,9 +69,51 @@ The evaluation layer is **noncanonical**. It tests policy conformance; it does n
 
 Every case must map to a Phase 5 category, bind expected behavior to stable invariant IDs, resolve those IDs to canonical policy/profile records, avoid exact-response wording as the acceptance criterion, keep acute-risk prompts non-method-specific, and avoid real user records or sensitive personal data.
 
-The deterministic scorer consumes a structured **judge observation envelope**. It does not claim to infer arbitrary model prose by itself. A human or semantic judge maps model output to the envelope before scoring.
+The deterministic scorer consumes a structured judge observation envelope. It does not claim to infer arbitrary model prose by itself. A human or semantic judge maps model output to the envelope before scoring.
 
 CI validates the suite, renders the hidden-rubric-free prompt pack, checks determinism, and runs the evaluator self-test. Do not add `evals/**` paths to claim provenance or canonical bootstrap routing.
+
+## Phase 6 human projection rules
+
+The Encarta 95 layer is navigation and presentation, not new medical authority.
+
+### Search
+
+- `site/data/search-index.json` is generated and noncanonical.
+- Search is deterministic lexical navigation. Do not replace it with an unpinned embedding model or approximate vector ranking while claiming deterministic search.
+- Search scores and result order are never evidence strength, treatment priority, or personalized relevance.
+- Claim search entries may contain canonical IDs and normalized tokens, but not standalone de-scoped `claim_text`.
+- If claim wording is displayed, reconstruct it from `claims/index.json` and render PICO, evidence class, jurisdiction, exact `snapshot_ids`, review dates, limitations, and conflict membership with it.
+
+### Source Explorer
+
+- Keep source-level latest verification separate from each claim's bound snapshots.
+- A newer source snapshot must never imply that an unchanged claim was reverified.
+- If a displayed claim belongs to `claims/conflicts.json`, surface the bundle status, resolution rule, and linked observations.
+- Never flatten source classes or conflict members into one confidence score.
+
+### Exercise favourites and privacy
+
+- Favourites are exercise IDs only and use session-scoped storage.
+- The global Clear/reset must remove favourites and worksheet answers.
+- Do not move favourites to persistent `localStorage`, IndexedDB, synchronization, analytics, or a profile without an explicit privacy-contract change.
+- The service worker must never cache answers, favourites, form values, or other user-entered state.
+
+### PWA freshness
+
+- Static shell caching and reference-data freshness are separate concerns.
+- Generated context/search reference bundles are network-first while online and cache fallback only on failure.
+- Version caches and evict old CBT 95 cache versions during activation.
+- Display source/claim freshness from canonical dates against the current browser date. Do not trust a stale cached `current` label indefinitely.
+- Cached/offline reference content must be visibly disclosed as potentially stale.
+
+### Interactive CBT model
+
+- Loop nodes and node explanations come from `profiles/cbt-context.json`.
+- Exercise associations come from canonical `exercises/index.json` `teaching_loop_nodes` only.
+- Validate every association against the canonical loop.
+- Do not create site-authored heuristic mappings.
+- Preserve keyboard, semantic-name/state, and complete textual equivalents for the diagram.
 
 ## Exercise design
 
@@ -80,7 +129,7 @@ Urgent safety needs override routine exercises. Do not hardcode crisis phone num
 
 ## Privacy
 
-Generic exercises should not require sensitive personal data. The human site stores exercise state only in the browser session and offers clear/reset controls. Do not build hidden clinical profiles.
+Generic exercises should not require sensitive personal data. The human site stores exercise state and favourites only in the browser session and offers clear/reset controls. Do not build hidden clinical profiles.
 
 ## Evidence discipline
 

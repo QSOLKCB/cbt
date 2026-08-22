@@ -1,0 +1,13 @@
+{
+  "name": "CBT 95 — Evidence-bounded learning desk",
+  "short_name": "CBT 95",
+  "description": "Evidence-bounded CBT reference and educational exercise lab.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#167a78",
+  "theme_color": "#000080",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

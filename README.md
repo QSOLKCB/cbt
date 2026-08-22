@@ -4,12 +4,14 @@
 >
 > **On-board an AI:** load [`ai/bootstrap.json`](ai/bootstrap.json) first, obey its policy-first `load_order` and task-specific `routed_records`, then use [`README4AI.md`](README4AI.md) as supplemental operator guidance.
 
-**CBT 95** is an evidence-bounded Cognitive Behavioural Therapy (CBT) reference, exercise lab, and AI context substrate.
+**CBT 95** is an evidence-bounded Cognitive Behavioural Therapy reference, educational exercise lab, human learning desk, and AI context substrate.
 
-The project has two layers:
+The project has two deliberately separated layers:
 
-1. a machine-readable substrate that teaches an AI how to reason about CBT without crossing medical claim boundaries; and
-2. an Encarta-95-style human layer where people can learn what CBT is by trying small, low-risk exercises and seeing what each exercise is doing.
+1. a canonical machine-readable substrate for evidence, safety, claim scope, provenance, and model-adapter boundaries; and
+2. an Encarta-95-style human layer for learning, navigation, exercises, source inspection, and offline reference use.
+
+Human-facing search indexes, site bundles, caches, diagrams, rankings, synthetic examples, and model-adapter outputs are projections. They do not become medical evidence or canonical authority.
 
 ## Use CBT 95 as a person
 
@@ -17,15 +19,25 @@ Open the live educational desk:
 
 **https://qsolkcb.github.io/cbt/**
 
-The site is the human-facing learning layer. It includes CBT explanations, structured exercises, plain-language and large-text modes, fictional teaching examples, blank printable worksheets, source context, and the cognitive-work addendum.
+The site includes:
+
+- CBT explanations and the canonical five-part teaching loop;
+- ten structured educational exercises;
+- plain-language and large-text modes;
+- fictional teaching examples and blank printable worksheets;
+- deterministic search plus a CBT glossary;
+- a provenance-aware Source Explorer;
+- session-scoped exercise favourites;
+- keyboard-first navigation;
+- an accessible interactive CBT-loop diagram;
+- offline PWA packaging with explicit stale-reference warnings; and
+- the cognitive-work addendum.
 
 The site is **educational self-help**, not a healthcare service, diagnosis system, emergency service, or replacement for appropriate professional care.
 
 ## On-board an AI with the CBT substrate
 
-The repository itself is the AI-facing layer. Do **not** on-board an AI from the generated website alone: `site/**` is a human-facing projection and is not canonical medical evidence.
-
-### AI with GitHub or repository access
+Do **not** on-board an AI from `site/**` alone. The site is a human-facing projection.
 
 Give the AI this repository:
 
@@ -33,27 +45,30 @@ Give the AI this repository:
 
 Then instruct it to:
 
-1. load `ai/bootstrap.json` first as the canonical machine entry point;
-2. obey the bootstrap `load_order` **before** loading task-specific CBT material;
-3. use `README4AI.md` as supplemental operator guidance, never as a replacement for the bootstrap contract;
-4. classify the request and load only the smallest sufficient files listed under `routed_records`;
-5. for substantive medical claims, use the claim ledger and preserve population, intervention, comparator, outcome, evidence class, jurisdiction, source snapshots, uncertainty, and review status;
-6. keep self-help education separate from clinician-delivered CBT;
-7. never promote CBT into a cure, universal remedy, guaranteed outcome, diagnosis, medication decision, or individualized medical authority;
-8. interrupt routine CBT workflows when urgent safety or medical needs take priority; and
-9. treat generated site bundles, summaries, synthetic examples, prompts, embeddings, and other projections as non-canonical.
+1. load `ai/bootstrap.json` first;
+2. obey the bootstrap `load_order` before task-specific material;
+3. use `README4AI.md` only as supplemental operator guidance;
+4. classify the request and load the smallest sufficient `routed_records`;
+5. use claim-local records for substantive medical claims;
+6. preserve population, intervention, comparator, outcome, evidence class, jurisdiction, exact source snapshots, review status, limitations, and conflicts;
+7. keep self-help education separate from clinician-delivered CBT;
+8. never promote CBT into a cure, universal remedy, guaranteed outcome, diagnosis, medication authority, or individualized clinical authority;
+9. apply the high-risk boundary policy when trauma, possible psychosis, possible mania, eating-disorder, substance-use, privacy, or productivity-at-any-cost pressure is material;
+10. interrupt routine CBT when urgent safety or medical needs take priority; and
+11. treat generated site/search/PWA/model-adapter/evaluation artifacts as non-canonical.
 
-The mandatory policy layer is currently loaded in this order:
+The mandatory policy layer is loaded in this exact order:
 
 ```text
 ai/source-policy.json
 ai/epistemic-contract.json
 ai/medical-claim-boundary.json
 ai/safety-escalation-policy.json
+ai/high-risk-boundary-policy.json
 profiles/cbt-context.json
 ```
 
-After that, `ai/bootstrap.json` routes the task to the smallest sufficient context. For example:
+Examples of task routing after that policy layer:
 
 ```text
 CBT overview
@@ -68,7 +83,7 @@ CBT self-help / exercises
   ai/safety-escalation-policy.json
   sources/public-sources.json
 
-Medical claim or clinical guideline question
+Medical claim / clinical guideline
   claims/evidence-classes.json
   claims/index.json
   claims/conflicts.json
@@ -90,8 +105,13 @@ CBT for cognitive work
   exercises/index.json
   sources/public-sources.json
 
+High-risk boundary
+  ai/high-risk-boundary-policy.json
+  ai/safety-escalation-policy.json
+
 Urgent safety
   ai/safety-escalation-policy.json
+  ai/high-risk-boundary-policy.json
 ```
 
 ### Copy/paste AI onboarding instruction
@@ -99,18 +119,18 @@ Urgent safety
 ```text
 Use https://github.com/QSOLKCB/cbt as the CBT context substrate for this conversation.
 
-Load ai/bootstrap.json first as the canonical machine entry point. Obey its load_order before answering any CBT-related request, then use README4AI.md as supplemental operator guidance. Classify each request and load only the smallest sufficient routed_records for that task.
+Load ai/bootstrap.json first as the canonical machine entry point. Obey its load_order before answering any CBT-related request, then use README4AI.md as supplemental operator guidance. Classify each request and load only the smallest sufficient routed_records.
 
-For substantive medical claims, use claims/index.json and preserve claim-local population, intervention, comparator, outcome, evidence class, jurisdiction, source snapshots, review status, uncertainty, limitations, and conflicts. Do not transfer evidence from an adjacent condition, population, protocol, comparator, outcome, or delivery format.
+For substantive medical claims, use claims/index.json and preserve claim-local population, intervention, comparator, outcome, evidence class, jurisdiction, exact snapshot_ids, review status, uncertainty, limitations, and conflict bundles. Do not transfer evidence from an adjacent condition, population, protocol, comparator, outcome, delivery format, jurisdiction, or source currency.
 
-Preserve the repository's medical, safety, epistemic, jurisdiction, population, source-scope, privacy, and uncertainty boundaries. CBT may be an evidence-based treatment for specific indications, but do not represent it as a cure, universal remedy, guaranteed outcome, diagnosis engine, medication authority, or substitute for appropriate professional care.
+Preserve the repository's medical, safety, high-risk, epistemic, privacy, source-scope, and uncertainty boundaries. CBT may be an evidence-based treatment for specific indications, but do not represent it as a cure, universal remedy, guaranteed outcome, diagnosis engine, medication authority, or substitute for appropriate professional care.
 
-Separate educational self-help from clinician-delivered CBT. Urgent safety or medical needs override routine exercises. Treat site/** and other generated projections as non-canonical. If the available evidence does not support a claim, say that it is unknown or insufficiently supported rather than filling the gap from model memory.
+Separate educational self-help from clinician-delivered CBT. Urgent safety or medical needs override routine exercises. Treat site/**, generated search indexes, PWA caches, model adapters, and adversarial evaluation fixtures as non-canonical. If available evidence does not support a claim, say it is unknown or insufficiently supported rather than filling the gap from model memory.
 ```
 
 ### AI without GitHub access
 
-Provide the AI with the canonical machine entry point first, followed by the policy files it names and any task-specific routed records. At minimum, give it:
+At minimum provide:
 
 ```text
 ai/bootstrap.json
@@ -118,90 +138,102 @@ ai/source-policy.json
 ai/epistemic-contract.json
 ai/medical-claim-boundary.json
 ai/safety-escalation-policy.json
+ai/high-risk-boundary-policy.json
 profiles/cbt-context.json
 README4AI.md
 ```
 
-`README4AI.md` is supplemental guidance; it does not replace or precede the bootstrap contract.
-
-Then add the task-specific files named in `routed_records`. An exercise-capable assistant also needs `exercises/index.json`, `profiles/learning-accessibility.json`, `examples/index.json`, and `sources/public-sources.json`. A medical-claim-capable assistant needs the `claims/**` records plus `sources/evidence-sources.json` and `sources/snapshots/manifest.json`.
-
-If context space is limited, prefer the bootstrap's **smallest-sufficient routing** rather than loading the entire repository and hoping the model sorts it out.
+Then add the task-specific files named by `routed_records`.
 
 ## Medical claim ledger
 
-Phase 3 adds a claim-local evidence spine.
+`claims/index.json` is the claim-local evidence spine. Substantive records preserve population, intervention, comparator, outcome, evidence class, jurisdiction, source IDs, exact source-snapshot IDs, review dates, quantitative results where applicable, and explicit `not_established` limits.
 
-`claims/index.json` stores medical and evidence claims with explicit **population / intervention / comparator / outcome** fields, evidence class, jurisdiction, source IDs, source-snapshot IDs, review dates, and limitations.
+`claims/evidence-classes.json` deliberately avoids a fake universal evidence rank. Guidelines, trials, systematic reviews, public education, professional training, mechanistic evidence, and archived guidance answer different questions.
 
-`claims/evidence-classes.json` keeps guidelines, randomized trials, systematic reviews/meta-analyses, public education, professional training material, mechanistic evidence, and archived guidance distinct. There is deliberately **no single global evidence rank** because those source classes answer different questions.
+`claims/conflicts.json` preserves material differences. Conflict members are never silently averaged into synthetic consensus.
 
-`claims/conflicts.json` preserves material evidence differences instead of averaging them away. For example, aggregate GAD evidence and delivery-format-specific GAD evidence remain separate so an aggregate CBT result cannot silently become a claim about remote CBT.
+`sources/snapshots/manifest.json` stores versioned metadata and verification dates, not copied restricted full text.
 
-`sources/snapshots/manifest.json` is a versioned **metadata snapshot**, not a copy of journal or guideline text. Stale verification means a source is due to be re-checked; it does not mean a claim has automatically become false.
+Important rules include:
 
-Useful checks:
+- `ADJACENT_CLAIM != CLAIM_LOCAL_EVIDENCE`
+- `STALE_VERIFICATION != FALSE_CLAIM`
+- `ARCHIVED_GUIDANCE != CURRENT_GUIDANCE`
+- `CONFLICT_BUNDLE != AVERAGED_CONSENSUS`
 
-```bash
-python3 tools/claim_ledger.py validate
-python3 tools/claim_ledger.py freshness
-```
+## Phase 6 human-layer invariants
 
-## Core boundary
+Phase 6 adds navigation and offline polish without creating a second evidence system.
 
-CBT is a structured psychological intervention and is an evidence-based treatment for some conditions when supported by applicable clinical guidance. This repository does **not** represent CBT as a cure, universal remedy, guaranteed outcome, diagnosis engine, or replacement for appropriate professional care.
+- `PROJECTION != CANONICAL_SOURCE`
+- `SEARCH_RANK != EVIDENCE_STRENGTH`
+- `SEARCH_RESULT != DE-SCOPED_MEDICAL_CLAIM`
+- `LATEST_SOURCE_SNAPSHOT != CLAIM_BOUND_SNAPSHOT`
+- `FAVOURITE_ID != CLINICAL_PROFILE`
+- `OFFLINE_CACHE != CURRENT_GUIDANCE`
+- `INTERACTIVE_DIAGRAM != NEW_CLINICAL_MODEL`
+- `PWA_CACHE != USER_EXERCISE_STORAGE`
 
-Machine guards:
+### Deterministic search
 
-- `CBT != CURE`
-- `CBT != UNIVERSAL_REMEDY`
-- `SELF_HELP_CBT != CLINICIAN_DELIVERED_CBT`
-- `AI_CONTEXT != DIAGNOSIS`
-- `AI_CONTEXT != CLINICAL_AUTHORITY`
-- `SYMPTOM_IMPROVEMENT != DISEASE_ERADICATION`
-- `GUIDELINE_RECOMMENDATION != INDIVIDUAL_MEDICAL_ADVICE`
-- `CONFIDENCE != EVIDENCE`
+`tools/build_site_data.py` generates `site/data/search-index.json` from canonical records. Claim entries contain only canonical IDs and normalized navigation tokens, not standalone `claim_text`.
 
-## What the exercise layer is for
+`site/search.js` uses a reproducible lexical algorithm:
 
-The exercises are educational demonstrations of CBT mechanisms. They help a person observe links among:
+1. NFKC normalization;
+2. locale-independent lowercase;
+3. alphanumeric tokenization;
+4. exact token match above prefix above substring;
+5. integer scoring only;
+6. fixed presentation-type tie-break; and
+7. canonical ID code-point order as the final tie-break.
 
-**situation → thought → emotion/body → behaviour → consequence**
+Search order is navigation metadata, never evidence quality or treatment priority.
 
-and experiment with changing one part of that loop.
+### Source Explorer
 
-Every exercise includes a **What CBT is doing here** explanation. Exercises are not scored as “right” or “wrong”, and the site does not diagnose users from their answers.
+The Source Explorer distinguishes:
 
-Initial exercises include:
+- source identity, class, jurisdiction, population/design and scope limits;
+- latest source-level snapshot verification;
+- each related claim's exact `snapshot_ids`, `last_reviewed`, and `review_due`;
+- full PICO/evidence/jurisdiction scope; and
+- conflict-bundle membership plus resolution rules.
 
-- the 7-step thought record
-- Catch → Check → Change
-- behaviour-loop mapping
-- tiny-step activity planning
-- structured problem solving
-- a cognitive-work exercise for coding, study, writing, debugging, and research
+A newer source snapshot never makes an older claim-bound snapshot appear reverified.
+
+### Favourites and privacy
+
+Exercise favourites store **exercise IDs only** in browser `sessionStorage`. They do not survive the browser session, are removed by the global Clear control, are not synchronized, are not service-worker cached, and are not treated as symptom or condition interests.
+
+Worksheet answers remain session-scoped as before.
+
+### Offline PWA
+
+The PWA separates static shell caching from reference-data freshness.
+
+- static public shell files may be cached;
+- generated context/search reference files are network-first while online;
+- cached reference data is fallback-only after revalidation failure;
+- fallback use is visibly disclosed;
+- cache names are versioned and old CBT 95 caches are evicted on activation;
+- browser-entered answers/favourites are never placed in service-worker caches; and
+- source/claim freshness is calculated at display time from canonical dates.
+
+Cached material may be useful offline, but `OFFLINE_CACHE != CURRENT_GUIDANCE`.
+
+### Interactive CBT model
+
+The diagram derives from `profiles/cbt-context.json` and canonical exercise `teaching_loop_nodes`. The site does not infer those relationships heuristically.
+
+Each node has keyboard operation, accessible name/state, a textual sequence, a complete text equivalent, and ordinary links to canonically associated exercises.
 
 ## Cognitive-work addendum
 
-The project deliberately avoids the cartoon claim that emotions are literally “moved into the prefrontal cortex”.
+The project avoids the cartoon claim that emotions are literally moved into the prefrontal cortex. The preferred wording is that regulation skills may help **channel emotional arousal into reflective and executive processing**.
 
-A more defensible description is that skills such as affect labelling, cognitive reappraisal, and task decomposition can sometimes help **channel emotional arousal into reflective and executive processing**. That may make it easier to re-engage attention and choose a next action during cognitively demanding work.
-
-This is a possible mechanism and practical framing, not a deterministic brain switch or productivity guarantee.
-
-## Ethical baseline
-
-The policy layer is grounded in public, authoritative sources from:
-
-- Medical Board of Australia
-- Australian Commission on Safety and Quality in Health Care
-- NHS and the NHS Constitution for England
-- NICE
-- NHS Every Mind Matters
-- peer-reviewed clinical and neuroimaging literature, with source-specific population/design/scope boundaries
-- historical Australian/Aotearoa New Zealand guidance retained only when explicitly marked reference-only
-
-See `sources/public-sources.json` and `sources/evidence-sources.json`.
+This is mechanistic and probabilistic context, not a productivity guarantee.
 
 ## Architecture
 
@@ -211,6 +243,7 @@ ai/
   epistemic-contract.json
   medical-claim-boundary.json
   safety-escalation-policy.json
+  high-risk-boundary-policy.json
   source-policy.json
 claims/
   evidence-classes.json
@@ -218,6 +251,7 @@ claims/
   conflicts.json
 profiles/
   cbt-context.json
+  cbt-glossary.json
   cognitive-work-addendum.json
   learning-accessibility.json
 exercises/
@@ -227,43 +261,64 @@ examples/
 sources/
   public-sources.json
   evidence-sources.json
-  snapshots/
-    manifest.json
+  snapshots/manifest.json
+adapters/
+  projection-spec.json
+  openai/
+evals/
+  adversarial-safety/
 site/
   index.html
   styles.css
   app.js
-  data/context.bundle.js   # generated projection
+  search.js
+  data-model.js
+  service-worker.js
+  manifest.webmanifest
+  icon.svg
+  data/context.bundle.js      # generated projection
+  data/search-index.json      # generated projection
 tools/
   build_site_data.py
+  build_model_adapters.py
+  adversarial_safety.py
   claim_ledger.py
   validate_context.py
 tests/
   test_context.py
+  test_adapters.py
+  test_adversarial_safety.py
+  test_phase6.py
 ```
 
-`ai/bootstrap.json` is the entry point for AI systems.
+`ai/bootstrap.json` remains the AI entry point.
 
 ## Build and validation
 
-The site data is generated from canonical JSON and is intentionally not committed as medical evidence.
-
 ```bash
 python3 tools/claim_ledger.py validate
-python3 tools/claim_ledger.py freshness
+python3 tools/claim_ledger.py freshness --fail-on-stale
+python3 tools/adversarial_safety.py validate
+python3 tools/adversarial_safety.py self-test
+python3 tools/build_model_adapters.py --determinism-check
 python3 tools/validate_context.py
 python3 tools/build_site_data.py
 python3 tools/build_site_data.py --check
+node --check site/search.js
+node --check site/data-model.js
+node --check site/app.js
+node --check site/service-worker.js
 python3 -m unittest discover -s tests -v
 ```
 
-For a local preview after building:
+Local preview:
 
 ```bash
+python3 tools/build_site_data.py
 python3 -m http.server 8000 -d site
 ```
 
-GitHub Pages performs the same build from canonical records when `main` is deployed.
+GitHub Pages rebuilds generated site projections from canonical records before deployment.
 
 ## Scope
 

@@ -1,0 +1,19 @@
+{
+  "type": "cbt-educational-glossary",
+  "schema_version": "1.0.0",
+  "purpose": "Plain-language CBT 95 glossary for human navigation and teaching. Definitions are educational context, not diagnostic criteria or standalone medical evidence.",
+  "terms": [
+    {"id":"automatic-thought","term":"Automatic thought","definition":"A thought or interpretation that appears quickly in response to a situation. CBT may make it explicit so it can be examined rather than automatically treated as fact."},
+    {"id":"balanced-thought","term":"Balanced thought","definition":"An interpretation that tries to fit the available evidence without forced positivity or unnecessary catastrophe."},
+    {"id":"behavioural-experiment","term":"Behavioural experiment","definition":"A planned, safe, low-stakes observation used to test a specific prediction against what actually happens."},
+    {"id":"cbt-loop","term":"CBT loop","definition":"The teaching model used here: situation, thought or interpretation, emotion and body response, behaviour, then consequence or feedback."},
+    {"id":"cognitive-reappraisal","term":"Cognitive reappraisal","definition":"Reconsidering how a situation is interpreted while preserving relevant facts and uncertainty."},
+    {"id":"evidence-class","term":"Evidence class","definition":"The kind of evidence a record represents, such as a guideline recommendation, randomized trial, systematic review, public education, or archived guidance. CBT 95 does not collapse these into one universal ranking."},
+    {"id":"formulation","term":"Formulation","definition":"A working explanation of how situations, interpretations, emotions, behaviours and consequences may be linked. A formulation is not automatically a diagnosis or proof of cause."},
+    {"id":"guideline-recommendation","term":"Guideline recommendation","definition":"A recommendation issued by an identified guideline body within a stated population and jurisdiction. It is not individualized medical advice."},
+    {"id":"self-help-cbt","term":"Self-help CBT","definition":"Educational or structured CBT-style material used outside clinician-delivered treatment. It is not automatically equivalent to assessment or therapy delivered by a qualified practitioner."},
+    {"id":"shared-decision-making","term":"Shared decision-making","definition":"A care principle in which treatment options, benefits, risks, limitations and preferences are discussed so the person can participate in decisions."},
+    {"id":"source-snapshot","term":"Source snapshot","definition":"A versioned metadata record showing what source identity and status CBT 95 verified at a particular time. It is not a copy of the remote full text."},
+    {"id":"conflict-bundle","term":"Conflict bundle","definition":"A record preserving relevant evidence differences instead of averaging them into a synthetic consensus. Scope, jurisdiction, intervention, comparator, outcome, authority or currency may explain the difference."}
+  ]
+}
