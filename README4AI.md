@@ -76,5 +76,6 @@ python3 tools/adversarial_safety.py validate
 python3 tools/adversarial_safety.py self-test
 python3 tools/build_model_adapters.py --determinism-check
 python3 tools/validate_context.py
+python3 tools/build_site_data.py
 python3 tools/build_site_data.py --check
 ```
