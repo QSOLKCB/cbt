@@ -20,6 +20,7 @@
     "cbt_self_help": [
       "profiles/cbt-context.json",
       "exercises/index.json",
+      "sources/public-sources.json",
       "ai/safety-escalation-policy.json"
     ],
     "medical_claim": [
