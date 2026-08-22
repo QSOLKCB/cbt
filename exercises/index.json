@@ -20,6 +20,7 @@
       ],
       "mechanism": "The exercise slows an automatic interpretation into inspectable parts, then asks whether the first thought explains all the evidence. CBT is not asking you to call a bad situation good; it is testing whether your interpretation is complete and useful.",
       "not_established": "A calmer feeling does not prove the balanced thought is true, and no answer diagnoses a cognitive distortion.",
+      "pause_or_support": "Pause if recording the situation makes distress feel unmanageable, if you feel unsafe, or if the situation involves immediate danger. Seek appropriate human or professional support rather than forcing the worksheet to completion.",
       "source_ids": [
         "uk.nhs.thought-record"
       ]
@@ -37,6 +38,7 @@
       ],
       "mechanism": "This makes the thought an object of examination rather than an instruction that must be obeyed. The goal is flexible thinking, not cheerful thinking.",
       "not_established": "Some difficult thoughts are accurate. Reframing must not erase danger, grief, discrimination, abuse or material problems.",
+      "pause_or_support": "Do not use reframing to talk yourself out of recognising danger, abuse, coercion, discrimination or urgent needs. Pause and seek appropriate support when safety or a serious real-world problem needs action first.",
       "source_ids": [
         "uk.nhs.every-mind-matters-cbt"
       ]
@@ -56,6 +58,7 @@
       ],
       "mechanism": "CBT often looks for maintaining loops. If avoidance reduces anxiety for five minutes but makes the feared task larger tomorrow, the short-term relief may be helping maintain the longer-term problem.",
       "not_established": "A loop map is a working formulation, not a diagnosis or proof of cause.",
+      "pause_or_support": "Pause if mapping the loop becomes overwhelming, starts to feel like self-blame, or brings up an unsafe situation that needs action rather than analysis. Support from a trusted person or qualified professional may be more appropriate than continuing alone.",
       "source_ids": [
         "uk.nhs.cbt",
         "uk.nhs.every-mind-matters-cbt"
@@ -75,6 +78,7 @@
       ],
       "mechanism": "Changing behaviour can alter the feedback loop. A small action can produce new evidence and reduce the need to solve the entire future before starting.",
       "not_established": "Starting is not always the right choice. Rest, help, accessibility changes or stopping may be more appropriate.",
+      "pause_or_support": "Do not choose a next step that is unsafe, medically inappropriate, beyond your capacity, or likely to worsen an urgent problem. Rest, assistance, accessibility changes or professional support can be the correct next action.",
       "source_ids": [
         "uk.nhs.cbt",
         "uk.nhs.every-mind-matters-cbt"
@@ -95,6 +99,7 @@
       ],
       "mechanism": "Structure reduces the number of decisions being made at once and turns broad worry into testable action where action is possible.",
       "not_established": "Not every problem is personally solvable, and structural or interpersonal problems should not be reframed as individual thinking errors.",
+      "pause_or_support": "Pause if the problem involves immediate safety, serious medical or legal stakes, abuse, coercion, or consequences that need specialist advice. A worksheet should not replace appropriate expert or interpersonal support.",
       "source_ids": [
         "uk.nhs.every-mind-matters-cbt"
       ]
@@ -112,8 +117,9 @@
         "Decompose: what is the smallest action that produces information?",
         "Test: do it, then review the result before choosing the next action."
       ],
-      "mechanism": "Affect labelling and cognitive reappraisal have been associated with prefrontal/control-system engagement and changes in emotional responding. The practical aim is to make enough reflective space to choose a next action, not to 'move emotion into the prefrontal cortex'.",
-      "not_established": "This does not guarantee better productivity, prove a particular neural state, or mean distress should be worked through instead of rested, treated or supported.",
+      "mechanism": "Affect labelling and cognitive reappraisal have been associated with prefrontal/control-system engagement and changes in emotional responding in laboratory neuroimaging research. The practical aim is to make enough reflective space to choose a next action, not to 'move emotion into the prefrontal cortex'.",
+      "not_established": "This does not guarantee better productivity, prove a particular neural state, establish that laboratory findings generalise to coding or study performance, or mean distress should be worked through instead of rested, treated or supported.",
+      "pause_or_support": "Stop the work exercise if distress is escalating, concentration is becoming unsafe, basic needs are being neglected, or continuing would mean pushing through a situation that needs rest, medical care, accessibility support or human help instead.",
       "source_ids": [
         "pubmed.lieberman.2007.affect-labeling",
         "pubmed.buhle.2014.reappraisal-meta"
