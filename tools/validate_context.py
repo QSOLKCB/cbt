@@ -22,6 +22,8 @@ def main() -> int:
     require("urgent safety needs override routine CBT exercises"==safety["principle"],"safety override weakened")
     require("move emotion into the prefrontal cortex" in work["avoid_framing"],"neuroscience cartoon guard missing")
     require(work.get("evidence_scope"),"cognitive-work evidence scope missing")
+    require(work.get("mechanism_summary"),"cognitive-work mechanism summary missing")
+    require(work.get("guardrails"),"cognitive-work guardrails missing")
     source_ids={s["id"] for s in sources["sources"]}; require(len(source_ids)==len(sources["sources"]),"duplicate source id")
     for needed in {"au.medicalboard.good-medical-practice","au.acsqhc.digital-mental-health","uk.nhs.cbt","uk.nice.depression.ng222","uk.nice.gad.cg113","uk.nhs.tackling-worries","uk.nhs.todo-list","uk.nhs.staying-on-top","uk.nhs.learninghub.behavioural-experiments","pubmed.lieberman.2007.affect-labeling","pubmed.buhle.2014.reappraisal-meta"}: require(needed in source_ids,f"missing critical source {needed}")
     for source in sources["sources"]:
@@ -34,6 +36,7 @@ def main() -> int:
         for field in ("purpose","prompts","mechanism","not_established","pause_or_support","source_ids"): require(exercise.get(field),f"{exercise['id']} missing {field}")
         for source_id in exercise["source_ids"]: require(source_id in source_ids,f"{exercise['id']} references unknown source {source_id}")
     require(required_phase2.issubset(ids),"phase-2 exercise missing")
+    require("affect-to-action" in ids,"cognitive-work route dependency affect-to-action missing")
     plain=access["plain_language_exercises"]; require(ids==set(plain),"plain-language variants must cover every exercise")
     synthetic=examples["examples"]; require(ids==set(synthetic),"synthetic examples must cover every exercise")
     require(any("never reads user-entered answers" in x for x in examples["rules"]),"example privacy guard missing")
