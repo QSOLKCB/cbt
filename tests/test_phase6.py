@@ -88,7 +88,7 @@ console.log(JSON.stringify({
         self.assertEqual(result["future"], "review_due")
         self.assertEqual(result["historical"], "not_yet_verified")
 
-    def test_source_explorer_renders_claim_scope_conflicts_and_bound_snapshots(self):
+    def test_source_explorer_renders_claim_scope_conflicts_bound_snapshots_and_registry_filter(self):
         app = (ROOT / "site" / "app.js").read_text(encoding="utf-8")
         for marker in (
             "Claim-bound snapshot IDs",
@@ -102,10 +102,14 @@ console.log(JSON.stringify({
             "Model.conflictsForClaim",
             "Exact snapshots bound to this claim",
             "not automatically the snapshot a claim is bound to",
+            'id="sourceRegistryFilter"',
+            "All registries",
+            "sourceRegistry(s.id)===reg.value",
+            "reg.onchange=render",
         ):
             self.assertIn(marker, app)
 
-    def test_favourites_are_session_only_and_global_clear_removes_them(self):
+    def test_favourites_are_session_only_and_global_clear_removes_them_and_refreshes_open_exercise(self):
         app = (ROOT / "site" / "app.js").read_text(encoding="utf-8")
         self.assertIn('FAV_KEY="cbt95:favourites"', app)
         self.assertIn("sessionStorage.getItem(FAV_KEY)", app)
@@ -114,6 +118,7 @@ console.log(JSON.stringify({
         self.assertNotIn("indexedDB", app)
         self.assertIn("Object.keys(sessionStorage).filter(k=>k.startsWith(\"cbt95:\"))", app)
         self.assertIn("favourites=new Set()", app)
+        self.assertIn("if(currentExerciseId)exercise(currentExerciseId,[]);else exercises()", app)
 
     def test_service_worker_is_network_first_for_reference_and_evicts_old_versions(self):
         sw = (ROOT / "site" / "service-worker.js").read_text(encoding="utf-8")
@@ -150,6 +155,12 @@ console.log(JSON.stringify({
         self.assertIn('rel="manifest"', index)
         self.assertIn("OFFLINE_CACHE != CURRENT_GUIDANCE", app)
         self.assertIn("cached medical/reference content may be stale", app.lower())
+
+    def test_readme4ai_builds_site_projections_before_checking_them(self):
+        text = (ROOT / "README4AI.md").read_text(encoding="utf-8")
+        build = text.index("python3 tools/build_site_data.py\n")
+        check = text.index("python3 tools/build_site_data.py --check")
+        self.assertLess(build, check)
 
 
 if __name__ == "__main__":
